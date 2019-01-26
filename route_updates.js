@@ -19,7 +19,7 @@ class routeUpdateButton extends React.Component {
       // return 'You liked this.';
     }
 
-    return crb(
+    return rub(
       'button',
       { onClick: () => this.setState({ clicked: true }) },
       'Route Updates'
@@ -27,4 +27,4 @@ class routeUpdateButton extends React.Component {
   }
 }
 const routeUpdateDomContainer = document.querySelector('#route_updates_button_container');
-ReactDOM.render(rub(RouteButton), routeUpdateDomContainer);
+ReactDOM.render(rub(RouteUpdateButton), routeUpdateDomContainer);
