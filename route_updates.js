@@ -10,7 +10,7 @@ class CommButton extends React.Component {
 
   render() {
     if (this.state.clicked) {
-       window.location.href = "route_updates.html";
+       window.location.href = "routeupdates.html";
       // return 'You liked this.';
     }
 
