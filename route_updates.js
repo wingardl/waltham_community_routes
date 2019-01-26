@@ -2,24 +2,25 @@
 
 const e = React.createElement;
 
-class LikeButton extends React.Component {
+class Button extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { liked: false };
+    this.state = { clicked: false };
   }
 
   render() {
-    if (this.state.liked) {
+
+    if (this.state.clicked) {
        window.location.href = "route_updates.html";
       // return 'You liked this.';
     }
 
     return e(
       'button',
-      { onClick: () => this.setState({ liked: true }) },
+      { onClick: () => this.setState({ clicked: true }) },
       'Route Updates'
     );
   }
 }
 const domContainer = document.querySelector('#route_updates_button_container');
-ReactDOM.render(e(LikeButton), domContainer);
+ReactDOM.render(e(Button), domContainer);
