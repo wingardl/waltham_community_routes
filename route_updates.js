@@ -2,7 +2,7 @@
 
 const crb = React.createElement;
 
-class CommButton extends React.Component {
+class RouteButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = { clicked: false };
@@ -22,4 +22,4 @@ class CommButton extends React.Component {
   }
 }
 const crbDomContainer = document.querySelector('#route_updates_button_container');
-ReactDOM.render(crb(CommButton), crbDomContainer);
+ReactDOM.render(crb(RouteButton), crbDomContainer);
