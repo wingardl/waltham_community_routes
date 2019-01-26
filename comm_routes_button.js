@@ -21,5 +21,5 @@ class CommButton extends React.Component {
     );
   }
 }
-const domContainer = document.querySelector('#comm_routes_button_container');
-ReactDOM.render(crb(CommButton), domContainer);
+const crbDomContainer = document.querySelector('#comm_routes_button_container');
+ReactDOM.render(crb(CommButton), crbDomContainer);
