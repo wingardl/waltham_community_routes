@@ -26,5 +26,5 @@ class Button extends React.Component {
     );
   }
 }
-const domContainer = document.querySelector('#route_updates_button_container');
+const domContainer = document.querySelector('#comm_routes_button_container');
 ReactDOM.render(e(Button), domContainer);
