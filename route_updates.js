@@ -27,4 +27,4 @@ class routeUpdateButton extends React.Component {
   }
 }
 const routeUpdateDomContainer = document.querySelector('#route_updates_button_container');
-ReactDOM.render(rub(RouteUpdateButton), routeUpdateDomContainer);
+ReactDOM.render(rub(routeUpdateButton), routeUpdateDomContainer);
