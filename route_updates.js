@@ -6,6 +6,8 @@ class Button extends React.Component {
   constructor(props) {
     super(props);
     this.state = { clicked: false };
+    this.x = 50;
+    
   }
 
   render() {
