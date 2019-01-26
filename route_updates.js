@@ -2,10 +2,12 @@
 
 const e = React.createElement;
 
+
 class Button extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {{ clicked: false }, {x:5}};
+    this.state = {clicked: false };
+
 
 
   }
