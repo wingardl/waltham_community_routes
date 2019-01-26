@@ -1,8 +1,8 @@
 'use strict';
 
-const crb = React.createElement;
+const rub = React.createElement;
 
-class CommButton extends React.Component {
+class routeUpdateButton extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -22,9 +22,9 @@ class CommButton extends React.Component {
     return crb(
       'button',
       { onClick: () => this.setState({ clicked: true }) },
-      'Community Routes'
+      'Route Updates'
     );
   }
 }
-const crbDomContainer = document.querySelector('#route_updates_button_container');
-ReactDOM.render(crb(RouteButton), crbDomContainer);
+const routeUpdateDomContainer = document.querySelector('#route_updates_button_container');
+ReactDOM.render(rub(RouteButton), routeUpdateDomContainer);

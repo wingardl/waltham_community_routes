@@ -15,14 +15,14 @@ class Button extends React.Component {
   render() {
 
     if (this.state.clicked) {
-       window.location.href = "route_updates.html";
+       window.location.href = "community_routes.html";
       // return 'You liked this.';
     }
 
     return e(
       'button',
       { onClick: () => this.setState({ clicked: true }) },
-      'Route Updates'
+      'Community Routes'
     );
   }
 }
