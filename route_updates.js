@@ -15,7 +15,7 @@ class CommButton extends React.Component {
 
   render() {
     if (this.state.clicked) {
-       window.location.href = "community_routes.html";
+       window.location.href = "routeupdates.html";
       // return 'You liked this.';
     }
 
@@ -27,4 +27,4 @@ class CommButton extends React.Component {
   }
 }
 const crbDomContainer = document.querySelector('#route_updates_button_container');
-ReactDOM.render(crb(CommButton), crbDomContainer);
+ReactDOM.render(crb(RouteButton), crbDomContainer);
