@@ -7,7 +7,7 @@ class routeUpdateButton extends React.Component {
     super(props);
     this.state = {
       clicked: false,
-      color: '#dfdfdf', };
+      color: '#000000' };
 
 
 
