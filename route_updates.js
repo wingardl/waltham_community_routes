@@ -1,30 +1,25 @@
 'use strict';
 
-const e = React.createElement;
+const crb = React.createElement;
 
-
-class Button extends React.Component {
+class CommButton extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {clicked: false };
-
-
-
+    this.state = { clicked: false };
   }
 
   render() {
-
     if (this.state.clicked) {
-       window.location.href = "route_updates.html";
+       window.location.href = "community_routes.html";
       // return 'You liked this.';
     }
 
-    return e(
+    return crb(
       'button',
       { onClick: () => this.setState({ clicked: true }) },
-      'Route Updates'
+      'Community Routes'
     );
   }
 }
-const domContainer = document.querySelector('#route_updates_button_container');
-ReactDOM.render(e(Button), domContainer);
+const crbDomContainer = document.querySelector('#comm_routes_button_container');
+ReactDOM.render(crb(CommButton), crbDomContainer);
