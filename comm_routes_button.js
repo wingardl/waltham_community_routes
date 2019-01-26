@@ -1,6 +1,6 @@
 'use strict';
 
-const e = React.createElement;
+const crb = React.createElement;
 
 class Button extends React.Component {
   constructor(props) {
@@ -14,7 +14,7 @@ class Button extends React.Component {
       // return 'You liked this.';
     }
 
-    return e(
+    return crb(
       'button',
       { onClick: () => this.setState({ clicked: true }) },
       'Community Routes'
@@ -22,4 +22,4 @@ class Button extends React.Component {
   }
 }
 const domContainer = document.querySelector('#comm_routes_button_container');
-ReactDOM.render(e(Button), domContainer);
+ReactDOM.render(crb(Button), domContainer);
