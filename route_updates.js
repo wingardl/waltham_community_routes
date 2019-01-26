@@ -10,16 +10,16 @@ class CommButton extends React.Component {
 
   render() {
     if (this.state.clicked) {
-       window.location.href = "community_routes.html";
+       window.location.href = "route_updates.html";
       // return 'You liked this.';
     }
 
     return crb(
       'button',
       { onClick: () => this.setState({ clicked: true }) },
-      'Community Routes'
+      'Route Updates'
     );
   }
 }
-const crbDomContainer = document.querySelector('#comm_routes_button_container');
+const crbDomContainer = document.querySelector('#route_updates_button_container');
 ReactDOM.render(crb(CommButton), crbDomContainer);
