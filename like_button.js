@@ -10,7 +10,7 @@ class LikeButton extends React.Component {
 
   render() {
     if (this.state.liked) {
-       window.location.href = "map.html";
+       window.location.href = "community_routes.html";
       // return 'You liked this.';
     }
 
