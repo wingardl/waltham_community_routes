@@ -33,19 +33,13 @@
         width: 480px;
     }
 
-    #autocomplete1 {
+    #autocomplete {
         position: absolute;
         top: 0px;
         left: 0px;
         width: 99%;
     }
 
-    #autocomplete2 {
-        position: absolute;
-        top: 0px;
-        left: 0px;
-        width: 99%;
-    }
 
     .label {
         text-align: right;
@@ -263,7 +257,7 @@
                 </div>
                 <div class="col-75">
                     <div id="originField">
-                        <input id="autocomplete1" placeholder="Enter origin address" onFocus="geolocate()" type="text" />
+                        <input id="autocomplete" placeholder="Enter origin address" onFocus="geolocate()" type="text" />
                     </div>
                     <table id="address1">
                         <tr>
@@ -298,7 +292,7 @@
                 </div>
                 <div class="col-75">
                     <div id="destinationField">
-                        <input id="autocomplete2" placeholder="Enter destination address" onFocus="geolocate()" type="text" />
+                        <input id="autocomplete" placeholder="Enter destination address" onFocus="geolocate()" type="text" />
                     </div>
                     <table id="address2">
                         <tr>
@@ -370,7 +364,7 @@
 
                 // When the user selects an address from the dropdown, populate the address
                 // fields in the form.
-                autocomplete.addListener('place_changed', fillInAddress);
+                autocomplete1.addListener('place_changed', fillInAddress);
             }
 
             function fillInAddress() {
