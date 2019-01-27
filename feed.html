@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<title> WPY </title>
+
+<head>
+    <style>   
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        grid-gap: 10px;
+        background-color:rgb(0, 0, 0);
+        padding: 10px;
+    }
+
+    .grid-container > div{
+        background-color: plum;
+        text-align: center;
+        padding: 20px 0;
+        font-size: 30px;
+    }
+
+    .item1 {
+     grid-column: 1 / 3;
+    }
+
+    .item2 {
+     grid-column: 3;
+    }     
+
+        * {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .grid-container> div{
+            display: grid;
+            grid-column-gap: 5px;
+            grid-template-columns: auto auto;
+            padding: 5px;
+            margin-left: 15%
+        }
+
+        .live-feed {
+            /* border: 1px solid;
+            padding: 30px;
+            text-align: center; */
+            grid-column: 1 / span 2;
+        }
+
+        .twitter-feed {
+            /* border: 1px solid;
+            padding: 30px;
+            text-align: center; */
+            grid-column: 3;
+<a class="twitter-timeline" href="https://twitter.com/MBTA?ref_src=twsrc%5Etfw">Tweets by MBTA</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 15%;
+            background-color: #000;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 15px;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: plum;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 15px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <img src="wpy-logo-web.jpg" height="50" width="110%" alt="wpy logo">
+        <li><a href="about.html">About</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+            <div class="dropdown-content">
+                <a href="#">Submit Route</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
+            <div class="dropdown-content">
+                <a href="#">Offer A Ride</a>
+                <a href="#">Request A Ride</a>
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+            <div class="dropdown-content">
+                <a href="map.html">Map</a>
+                <a href="feed.html">Feed</a>
+            </div>
+        </li>
+    </ul>
+
+    <div class="grid-container" style="margin-left:15%;padding:1px 16px;height:1000px;">
+        <div class="feed-item">feed heree</div>
+        <div class="twitter-item">twitter here</div>
+    </div>
+
+    </body>
+</html>
