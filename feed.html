@@ -35,6 +35,29 @@
             margin: 0;
         }
 
+        .grid-container> div{
+            display: grid;
+            grid-column-gap: 5px;
+            grid-template-columns: auto auto;
+            padding: 5px;
+            margin-left: 15%
+        }
+
+        .live-feed {
+            /* border: 1px solid;
+            padding: 30px;
+            text-align: center; */
+            grid-column: 1 / span 2;
+        }
+
+        .twitter-feed {
+            /* border: 1px solid;
+            padding: 30px;
+            text-align: center; */
+            grid-column: 3;
+            <a class="twitter-timeline" href="https://twitter.com/MBTA?ref_src=twsrc%5Etfw">Tweets by MBTA</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        }
+
         ul {
             list-style-type: none;
             margin: 0;
@@ -129,8 +152,8 @@
     </ul>
 
     <div class="grid-container" style="margin-left:15%;padding:1px 16px;height:1000px;">
-        <div class="item1">feed here</div>
-        <div class="item2">twitterrrrr here</div>
+        <div class="feed-item">feed heree</div>
+        <div class="twitter-item">twitter here</div>
     </div>
 
     </body>
