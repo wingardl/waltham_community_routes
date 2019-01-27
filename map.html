@@ -2,372 +2,490 @@
 
 
 
-    <title>Drawing Tools</title>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
-    <meta charset="utf-8">
-    <head>
-      <style>
+<title>Drawing Tools</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<head>
+  <style>
 
-        *{
-     font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    *{
+      font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
     }
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 100%;
+    /* Always set the map height explicitly to define the size of the div
+    * element that contains the map. */
+    #map {
+      height: 50%;
 
-      }
-      /* Optional: Makes the sample page fill the window. */
-      html, body {
-        height: 100%;
-        margin: 0;
-      }
-        body {
-          margin: 0;
-        }
+    }
+    /* Optional: Makes the sample page fill the window. */
+    html, body {
+      height: 50%;
+      margin: 0;
+    }
+    body {
+      margin: 0;
+    }
 
-        ul {
-          list-style-type: none;
-          margin: 0;
-          padding: 0;
-          width: 15%;
-          background-color: #000;
-          position: fixed;
-          height: 100%;
-          overflow: auto;
-        }
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 15%;
+      background-color: #000;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
 
-        li a {
-          display: block;
-          color: #000;
-          padding: 8px 16px;
-          text-decoration: none;
-          border-radius: 15px;
-        }
+    li a {
+      display: block;
+      color: #000;
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 15px;
+    }
 
-        li a,
-        .dropbtn {
-          display: inline-block;
-          color: white;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-        }
+    li a,
+    .dropbtn {
+      display: inline-block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+    }
 
-        li a:hover,
-        .dropdown:hover .dropbtn {
-          background-color: plum;
-        }
+    li a:hover,
+    .dropdown:hover .dropbtn {
+      background-color: plum;
+    }
 
-        li.dropdown {
-          display: inline-block;
-        }
+    li.dropdown {
+      display: inline-block;
+    }
 
-        .dropdown-content {
-          display: none;
-          position: absolute;
-          background-color: #f9f9f9;
-          min-width: 160px;
-          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-          z-index: 1;
-          border-radius: 15px;
-        }
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+      z-index: 1;
+      border-radius: 15px;
+    }
 
-        .dropdown-content a {
-          color: black;
-          padding: 12px 16px;
-          text-decoration: none;
-          display: block;
-          text-align: left;
-        }
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
+      text-align: left;
+    }
 
-        .dropdown-content a:hover {
-          background-color: #f1f1f1
-        }
+    .dropdown-content a:hover {
+      background-color: #f1f1f1
+    }
 
-        .dropdown:hover .dropdown-content {
-          display: block;
-        }
-      </style>
-    </head>
+    .dropdown:hover .dropdown-content {
+      display: block;
+    }
+  </style>
 
-    <body>
 
-      <ul>
-        <img src="wpy-logo-web.jpg" height="50" width = "110%" alt="wpy logo">
-        <li><a href="/">Home</a></li>
-        <li><a href="about.html">About</a></li>
-        <li class="dropdown">
-          <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
-          <div class="dropdown-content">
-            <a href="submit_route.html">Submit Route</a>
-          </div>
-        </li>
-        <li class="dropdown">
-          <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
-          <div class="dropdown-content">
-            <a href="#">Offer A Ride</a>
-            <a href="#">Request A Ride</a>
-          </div>
-        </li>
+<body>
 
-        <li class="dropdown">
-          <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
-          <div class="dropdown-content">
-            <a href="map.html">Map</a>
-            <a href="feed.html">Feed</a>
-          </div>
-        </li>
-        </ul>
+  <ul>
+    <img src="wpy-logo-web.jpg" height="50" width = "110%" alt="wpy logo">
+    <li><a href="/">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+      <div class="dropdown-content">
+        <a href="submit_route.html">Submit Route</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
+      <div class="dropdown-content">
+        <a href="#">Offer A Ride</a>
+        <a href="#">Request A Ride</a>
+      </div>
+    </li>
 
-      <div id ="map" style="margin-left:15%;padding:1px 16px;height:1000px;"></div>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+      <div class="dropdown-content">
+        <a href="map.html">Map</a>
+        <a href="feed.html">Feed</a>
+      </div>
+    </li>
+  </ul>
+
+  <div id ="map" style="margin-left:15%;padding:1px 16px;height:1000px;"></div>
+  <!-- <div><button id="locations">Visualize Locations</button>
+
+</div> -->
+<!-- <div>
+    <!-- <h1> Visualize Locations <button type='button'>Visualize Locations</button></h1> -->
+     <!-- <h1> Visualize Locations<button type = 'button' id='button'>Visualize Locations</button></h1> -->
+
+
+
+
+<style>
+
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: right;
+  text-decoration: none;
+
+  font-size: 16px;
+  margin: 4px 2px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+}
+
+.button1 {
+  background-color: white;
+  color: black;
+  border: 2px solid #4CAF50;
+}
+
+.button1:hover {
+  background-color: #4CAF50;
+  color: white;
+}
+
+</style>
+
+</head>
+<body>
+
+<button class='button button1' style = "float:right" id = 'button'>Visulize Locations</button>
+
 
     <script>
-      // This example requires the Drawing library. Include the libraries=drawing
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
+      var button = document.getElementById('button');
 
-      function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: 42.3765, lng: -71.2356},
-          zoom: 15,
-          styles:   [
-            {
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#ebe3cd"
-                }
-              ]
-            },
-            {
-              "elementType": "labels.text.fill",
-              "stylers": [
-                {
-                  "color": "#523735"
-                }
-              ]
-            },
-            {
-              "elementType": "labels.text.stroke",
-              "stylers": [
-                {
-                  "color": "#f5f1e6"
-                }
-              ]
-            },
-            {
-              "featureType": "administrative",
-              "elementType": "geometry.stroke",
-              "stylers": [
-                {
-                  "color": "#c9b2a6"
-                }
-              ]
-            },
-            {
-              "featureType": "administrative.land_parcel",
-              "elementType": "geometry.stroke",
-              "stylers": [
-                {
-                  "color": "#dcd2be"
-                }
-              ]
-            },
-            {
-              "featureType": "administrative.land_parcel",
-              "elementType": "labels.text.fill",
-              "stylers": [
-                {
-                  "color": "#ae9e90"
-                }
-              ]
-            },
-            {
-              "featureType": "landscape.natural",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#dfd2ae"
-                }
-              ]
-            },
-            {
-              "featureType": "poi",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#dfd2ae"
-                }
-              ]
-            },
-            {
-              "featureType": "poi",
-              "elementType": "labels.text.fill",
-              "stylers": [
-                {
-                  "color": "#93817c"
-                }
-              ]
-            },
-            {
-              "featureType": "poi.park",
-              "elementType": "geometry.fill",
-              "stylers": [
-                {
-                  "color": "#a5b076"
-                }
-              ]
-            },
-            {
-              "featureType": "poi.park",
-              "elementType": "labels.text.fill",
-              "stylers": [
-                {
-                  "color": "#447530"
-                }
-              ]
-            },
-            {
-              "featureType": "road",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#f5f1e6"
-                }
-              ]
-            },
-            {
-              "featureType": "road.arterial",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#fdfcf8"
-                }
-              ]
-            },
-            {
-              "featureType": "road.highway",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#f8c967"
-                }
-              ]
-            },
-            {
-              "featureType": "road.highway",
-              "elementType": "geometry.stroke",
-              "stylers": [
-                {
-                  "color": "#e9bc62"
-                }
-              ]
-            },
-            {
-              "featureType": "road.highway.controlled_access",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#e98d58"
-                }
-              ]
-            },
-            {
-              "featureType": "road.highway.controlled_access",
-              "elementType": "geometry.stroke",
-              "stylers": [
-                {
-                  "color": "#db8555"
-                }
-              ]
-            },
-            {
-              "featureType": "road.local",
-              "elementType": "labels.text.fill",
-              "stylers": [
-                {
-                  "color": "#806b63"
-                }
-              ]
-            },
-            {
-              "featureType": "transit.line",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#dfd2ae"
-                }
-              ]
-            },
-            {
-              "featureType": "transit.line",
-              "elementType": "labels.text.fill",
-              "stylers": [
-                {
-                  "color": "#8f7d77"
-                }
-              ]
-            },
-            {
-              "featureType": "transit.line",
-              "elementType": "labels.text.stroke",
-              "stylers": [
-                {
-                  "color": "#ebe3cd"
-                }
-              ]
-            },
-            {
-              "featureType": "transit.station",
-              "elementType": "geometry",
-              "stylers": [
-                {
-                  "color": "#dfd2ae"
-                }
-              ]
-            },
-            {
-              "featureType": "water",
-              "elementType": "geometry.fill",
-              "stylers": [
-                {
-                  "color": "#b9d3c2"
-                }
-              ]
-            },
-            {
-              "featureType": "water",
-              "elementType": "labels.text.fill",
-              "stylers": [
-                {
-                  "color": "#92998d"
-                }
-              ]
-            }
-          ]
-        });
+var map;
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 42.3765, lng: -71.2356},
 
-        var drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: google.maps.drawing.OverlayType.MARKER,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-          },
-          markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-          circleOptions: {
-            fillColor: '#ffff00',
-            fillOpacity: 1,
-            strokeWeight: 5,
-            clickable: false,
-            editable: true,
-            zIndex: 1
-          }
-        });
-        drawingManager.setMap(map);
+      zoom: 15,
+      height: 200,
+      width: 200,
+      styles:   [
+      {
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#ebe3cd"
+        }
+        ]
+      },
+      {
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#523735"
+        }
+        ]
+      },
+      {
+        "elementType": "labels.text.stroke",
+        "stylers": [
+        {
+          "color": "#f5f1e6"
+        }
+        ]
+      },
+      {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+        {
+          "color": "#c9b2a6"
+        }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "geometry.stroke",
+        "stylers": [
+        {
+          "color": "#dcd2be"
+        }
+        ]
+      },
+      {
+        "featureType": "administrative.land_parcel",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#ae9e90"
+        }
+        ]
+      },
+      {
+        "featureType": "landscape.natural",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#dfd2ae"
+        }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#dfd2ae"
+        }
+        ]
+      },
+      {
+        "featureType": "poi",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#93817c"
+        }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "geometry.fill",
+        "stylers": [
+        {
+          "color": "#a5b076"
+        }
+        ]
+      },
+      {
+        "featureType": "poi.park",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#447530"
+        }
+        ]
+      },
+      {
+        "featureType": "road",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#f5f1e6"
+        }
+        ]
+      },
+      {
+        "featureType": "road.arterial",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#fdfcf8"
+        }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#f8c967"
+        }
+        ]
+      },
+      {
+        "featureType": "road.highway",
+        "elementType": "geometry.stroke",
+        "stylers": [
+        {
+          "color": "#e9bc62"
+        }
+        ]
+      },
+      {
+        "featureType": "road.highway.controlled_access",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#e98d58"
+        }
+        ]
+      },
+      {
+        "featureType": "road.highway.controlled_access",
+        "elementType": "geometry.stroke",
+        "stylers": [
+        {
+          "color": "#db8555"
+        }
+        ]
+      },
+      {
+        "featureType": "road.local",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#806b63"
+        }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#dfd2ae"
+        }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#8f7d77"
+        }
+        ]
+      },
+      {
+        "featureType": "transit.line",
+        "elementType": "labels.text.stroke",
+        "stylers": [
+        {
+          "color": "#ebe3cd"
+        }
+        ]
+      },
+      {
+        "featureType": "transit.station",
+        "elementType": "geometry",
+        "stylers": [
+        {
+          "color": "#dfd2ae"
+        }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "geometry.fill",
+        "stylers": [
+        {
+          "color": "#b9d3c2"
+        }
+        ]
+      },
+      {
+        "featureType": "water",
+        "elementType": "labels.text.fill",
+        "stylers": [
+        {
+          "color": "#92998d"
+        }
+        ]
       }
-    </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
+      ]
+    });
+
+    var drawingManager = new google.maps.drawing.DrawingManager({
+      drawingMode: google.maps.drawing.OverlayType.MARKER,
+      drawingControl: true,
+      drawingControlOptions: {
+        position: google.maps.ControlPosition.TOP_CENTER,
+        drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
+      },
+      markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
+      circleOptions: {
+        fillColor: '#ffff00',
+        fillOpacity: 1,
+        strokeWeight: 5,
+        clickable: false,
+        editable: true,
+        zIndex: 1
+      }
+    });
+    drawingManager.setMap(map);
+
+    //update();
+  }
+
+
+
+  function getJSONMarkers(){
+    const markers = [
+    {"content": "Construction work on Moody Street!",
+    "street": "Moody Street",
+    "city": "Waltham",
+    "state": "MA",
+    "zip": "02453",
+    "long": -71.237470,
+    "lat": 42.367930,
+    "main_category": "repair",
+    "tags": "construction work",
+    "timestamp": "12:00:00",
+    "upvotes": "13",
+    "active": "True"}];
+    return markers;
+  }
+
+  var blackStar = 'https://i.imgur.com/xckV6jl.png';
+
+  var globalMap;
+  function loadBaseMap() {
+    // Initialize Google Maps
+    const mapOptions = {
+      center:new google.maps.LatLng(42.3767, -71.2356),
+      zoom: 11
+    }
+
+    const map =  new google.maps.Map(document.getElementById("map"), mapOptions);
+    globalMap = map;
+
+
+  }
+
+
+  button.addEventListener('click', () => {
+    const resourceMarkers = getJSONMarkers();
+    // Initialize Google Markers
+    for(resource of resourceMarkers) {
+      // console.log(typer);
+      console.log("hello");
+      let marker = new google.maps.Marker({
+        map: map,
+        position: new google.maps.LatLng(resource.lat, resource.long),
+        title: resource.name,
+        icon: blackStar
+      })
+
+      // marker.setMap(map);
+
+    }
+
+
+  });
+
+
+  // function update(){
+
+
+  //  }
+
+
+
+
+
+
+
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
   // <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&callback=initMap">'
-   // async defer></script>
+  // async defer></script>
