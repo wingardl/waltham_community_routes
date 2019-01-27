@@ -187,7 +187,7 @@ th, td {
           "main_category": "repair",
           "tags": "construction work",
           "timestamp": "12:00:00",
-          "upvotes": "13",
+          "upvotes": 13,
           "active": "True"},
 
         {"content": "Bus 75 didn't come this morning.",
@@ -200,7 +200,7 @@ th, td {
           "main_category": "Transit",
           "tags": "Buses",
           "timestamp": "14:30:00",
-          "upvotes": "20",
+          "upvotes": 20,
           "active": "True" },
 
 
@@ -214,7 +214,7 @@ th, td {
           "main_category": "Weather",
           "tags": "ice",
           "timestamp": "11:00:00",
-          "upvotes": "23",
+          "upvotes": 23,
           "active": "True" }
             ]
 
@@ -268,7 +268,7 @@ th, td {
                         <h3 id="timestamp2"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes2"></a>
+                        <button class="btn" onClick="onClick2()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes2"></a>
                         </button>
                     </div>
                 </div>
@@ -293,7 +293,7 @@ th, td {
                         <h3 id="timestamp3"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes3"></a>
+                        <button class="btn" onClick="onClick3()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes3"></a>
                         </button>
                     </div>
                 </div>
@@ -330,7 +330,7 @@ th, td {
 
             var upvotes2 = myList[1].upvotes;
             document.getElementById("upvotes2").innerHTML = upvotes2;
-            function onClick() {
+            function onClick2() {
                 upvotes2 += 1;
                 document.getElementById("upvotes2").innerHTML = upvotes2;
             };
@@ -351,7 +351,7 @@ th, td {
 
                 var upvotes3 = myList[2].upvotes;
                 document.getElementById("upvotes3").innerHTML = upvotes3;
-                function onClick() {
+                function onClick3() {
                     upvotes3 += 1;
                     document.getElementById("upvotes3").innerHTML = upvotes3;
                 };
