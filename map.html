@@ -453,7 +453,7 @@ var map;
   }
 
 
-  button.addEventListener('click', () => {
+  // button.addEventListener('click', () => {
     const resourceMarkers = getJSONMarkers();
     // Initialize Google Markers
     for(resource of resourceMarkers) {
@@ -464,14 +464,14 @@ var map;
         position: new google.maps.LatLng(resource.lat, resource.long),
         title: resource.name,
         icon: blackStar
-      })
+      // })
 
       // marker.setMap(map);
 
     }
 
 
-  });
+  // });
 
 
   // function update(){
