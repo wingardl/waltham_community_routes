@@ -118,7 +118,7 @@
       </div>
     </li>
   </ul>
-  
+
 
   <div id ="map" style="margin-left:15%;padding:1px 16px;height:1000px;"></div>
   <!-- <div><button id="locations">Visualize Locations</button>
@@ -414,7 +414,7 @@ var map;
     drawingManager.setMap(map);
 
     //update();
-  
+
 
 
 
@@ -431,6 +431,18 @@ var map;
       "tags": "construction work",
       "timestamp": "12:00:00",
       "upvotes": "13",
+      "active": "True"},
+      {"content": "Inbound commuter rails delayed at least 20 mins...",
+      "street": "123 commuter rail street",
+      "city": "Waltham",
+      "state": "MA",
+      "zip": "02452",
+      "long": -71.235429,
+      "lat": 42.374628,
+      "main_category": "delay",
+      "tags": "commuter rail",
+      "timestamp": "03:21:12",
+      "upvotes": "2",
       "active": "True"}];
       return markers;
     }
@@ -451,6 +463,8 @@ var map;
 
     }
 
+    var problemString;
+    var infoWindow;
 
     // button.addEventListener('click', () => {
       const resourceMarkers = getJSONMarkers();
@@ -465,9 +479,12 @@ var map;
           icon: blackStar
         // })
         })
-
+        problemString = resource.content;
+        infoWindow = new google.maps.InfoWindow({
+          content: problemString
+        });
+        infoWindow.open(map, marker);
         // marker.setMap(map);
-
       }
     }
 
