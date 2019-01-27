@@ -83,13 +83,12 @@ li.dropdown {
   display: block;
 }
 </style>
-
 </head>
-  <img src="header-01.png" width = "100%" alt="wpy logo" align="middle">
+
 <body>
 
 <ul>
-
+<img src="wpy-logo-web.jpg" height="50" width = "110%" alt="wpy logo">
 <li><a href="/">Home</a></li>
 <li><a href="about.html">About</a></li>
 <li class="dropdown">
@@ -118,12 +117,10 @@ li.dropdown {
 </ul>
 
 <div style="margin-left:15%;">
-<h3>Enter your route</h3>
+<h3>See user-submitted routes</h3>
 
-<div id ="map" style="margin-left:15%;margin-right:0;padding:1px 16px;height:400px;width:70%"></div>
 
-<h3><input type="button" value="Click to submit" onclick="submitDrawing()"></h3>
-</div>
+<div id ="map" style="margin-left:100px;margin-right:0;padding:1px 16px;height:400px;width:70%"></div>
 
 <script>
 
@@ -136,50 +133,40 @@ function initMap() {
     center: {lat: 42.3765, lng: -71.2356},
     zoom: 15
   });
+
+  var recentUserPath = [
+    {lat: 42.37709252946728, lng: -71.23063008862664},
+    {lat: 42.37617314640039, lng: -71.2369815595739},
+    {lat: 42.37465137933364, lng: -71.23668115216424},
+    {lat: 42.373858777715434, lng: -71.23968522626092},
+    {lat: 42.37274911864511, lng: -71.24320428448846},
+    {lat: 42.37141750188137, lng: -71.24642293530633},
+    {lat: 42.370402917778726, lng: -71.24861161786248},
+    {lat: 42.370244387532274, lng: -71.25028531628777},
+    {lat: 42.36837370040782, lng: -71.25118653851678},
+  ];
+
   poly = new google.maps.Polyline({
+    path: recentUserPath,
     strokeColor: '#00ced1',
     strokeOpacity: 1,
     strokeWeight: 3,
-    editable: true
+    editable: false
   });
+
   poly.setMap(map);
-  // Add a listener for the click event
-  map.addListener('click', addLatLng);
 
-  var contentString = "Click anywhere to add waypoints which represent your route.";
-  var infoWindow = new google.maps.InfoWindow({
-    content: contentString
-  });
-  var marker = new google.maps.Marker({
-    position: {lat: 42.374628, lng: -71.235429},
+  var startMarker = new google.maps.Marker({
+    position: recentUserPath[0],
     map: map,
-    title: 'Waltham Commuter Rail Station'
-  })
-  infoWindow.open(map, marker);
-  function addLatLng(event) {
-    //
-    //
-    //EMILY SAYS:
-    //variable path below is an MVCArray which has stored in it all the latitude
-    //and longitude information!
-    //
-    //
-    path = poly.getPath();
+    title: 'Start'
+  });
 
-    path.push(event.latLng);
-
-    console.log(path.toString());
-  }
-}
-
-function submitDrawing() {
-  //alert("Thank you! Your route has been added to our database.");
-  //alert(path.pop().toString());
-  alert(path.getArray().toString());
-
-  //ideally we pass the path array here and store it somewhere.
-  //access that array by typing path.getArray().toString() which will give you
-  //the lat long pairs in string format ex. "(3, 4), (1, 2), (4, 5)".
+  var endMarker = new google.maps.Marker({
+    position: recentUserPath[recentUserPath.length - 1],
+    map: map,
+    title: 'End'
+  });
 }
 
 </script>
