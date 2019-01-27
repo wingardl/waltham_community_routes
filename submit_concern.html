@@ -261,12 +261,12 @@
     </ul>
 
     <div class="container" style="margin-left:15%;padding:1px 16px;height:1000px;">
-      <h2>Offer a ride!</h2>
+      <h2>Submit a concern regarding road safety, maintanence, or transportation!</h2>
 
         <form action="/action_page.php">
             <div class="row">
                 <div class="col-25">
-                    <label for="name">Name</label>
+                    <label for="name">Location</label>
                 </div>
                 <div class = "col-75">
                   <textarea id ="name" name ="name"></textarea>
@@ -274,32 +274,27 @@
 
             <div class="row">
                 <div class="col-25">
-                    <label for="name">Which days can you offer a ride home from school?</label>
+                    <label for="name">Category of concern</label>
                 </div>
                 <div class = "col-75">
-                  <input type="checkbox" name="monday" value="monday"> Monday
-  <input type="checkbox" name="tuesday" value="tuesday"> Tuesday
-    <input type="checkbox" name="wednesday" value="wednesday" > Wednesday
-      <input type="checkbox" name="thursday" value="thursday" >Thursday
-        <input type="checkbox" name="friday" value="friday" >Friday
+                  <input type="checkbox" name="sidewalk" value="sidewalk"> Sidewalk
+  <input type="checkbox" name="road" value="road"> Roads
+    <input type="checkbox" name="snow" value="snow" > Snow removal
+      <input type="checkbox" name="lights" value="lights" > Street lights
+      <input type="checkbox" name="transit" value="transit" > Transit
+      <input type="checkbox" name="repair" value="repair" > Repair
+        <input type="checkbox" name="other" value="other" >Other
           <br><br><br><br>
             </div>
 
-            <div class="row">
-                <div class="col-25">
-                    <label for="subject">At what time?</label>
-                </div>
-                <div class="col-75">
-                    <textarea id="subject" name="subject"></textarea>
-                </div>
 
 
             <div class="row">
                 <div class="col-25">
-                    <label for="subject">How many can you drive, and around where do you live?</label>
+                    <label for="subject">Details of concern</label>
                 </div>
                 <div class="col-75">
-                    <textarea id="subject" name="subject" placeholder="Any additional details go here!" style="height:200px"></textarea>
+                    <textarea id="subject" name="subject" style="height:200px"></textarea>
                 </div>
             </div>
             <div class="row">
