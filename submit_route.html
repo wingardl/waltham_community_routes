@@ -280,7 +280,34 @@
                     <label for="lname">Destination</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="lname" name="lastname" placeholder="Destination">
+                    <div id="destinationField">
+                        <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
+                    </div>
+                    <table id="address">
+                        <tr>
+                        <tr class="label">Street address</tr>
+                        <td class="slimField"><input class="field" id="street_number" disabled="true" /></td>
+                        <td class="wideField" colspan="2"><input class="field" id="route" disabled="true" /></td>
+                        </tr>
+                        <tr>
+                        <tr class="label">City</tr>
+                        <!-- Note: Selection of address components in this example is typical.
+                                                         You may need to adjust it for the locations relevant to your app. See
+                                                         https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+                                                    -->
+                        <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" /></td>
+                        </tr>
+                        <tr>
+                        <tr class="label">State</tr>
+                        <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true" /></td>
+                        <tr class="label">Zip code</tr>
+                        <td class="wideField"><input class="field" id="postal_code" disabled="true" /></td>
+                        </tr>
+                        <tr>
+                        <tr class="label">Country</tr>
+                        <td class="wideField" colspan="3"><input class="field" id="country" disabled="true" /></td>
+                        </tr>
+                    </table>
                 </div>
             </div>
             <div class="row">
