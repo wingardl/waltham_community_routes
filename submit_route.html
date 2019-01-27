@@ -40,6 +40,13 @@
         width: 99%;
     }
 
+     #autocomplete2 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 99%;
+    }
+
 
     .label {
         text-align: right;
@@ -290,26 +297,26 @@
                 <div class="col-25">
                     <label for="lname">Destination</label>
                 </div>
-                <!-- <div class="col-75">
+                <div class="col-75">
                     <div id="destinationField">
-                        <input id="autocomplete" placeholder="Enter destination address" onFocus="geolocate()" type="text" />
+                        <input id="autocomplete2" placeholder="Enter destination addresss" onFocus="geolocate2()" type="text" />
                     </div>
                     <table id="address2">
                         <tr>
                         <tr class="label">Street address</tr>
-                        <td class="slimField"><input class="field" id="street_number" disabled="true" /></td>
-                        <td class="wideField" colspan="2"><input class="field" id="route" disabled="true" /></td>
+                        <td class="slimField"><input class="field" id="street_number2" disabled="true" /></td>
+                        <td class="wideField" colspan="2"><input class="field" id="route2" disabled="true" /></td>
                         </tr>
                         <tr>
                         <tr class="label">City</tr>
                      
-                        <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" /></td>
+                        <td class="wideField" colspan="3"><input class="field" id="locality2" disabled="true" /></td>
                         </tr>
                         <tr>
                         <tr class="label">State</tr>
-                        <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true" /></td>
+                        <td class="slimField"><input class="field" id="administrative_area_level_2" disabled="true" /></td>
                         <tr class="label">Zip code</tr>
-                        <td class="wideField"><input class="field" id="postal_code" disabled="true" /></td>
+                        <td class="wideField"><input class="field" id="postal_code2" disabled="true" /></td>
                         </tr>
                         <tr>
                         <tr class="label">Country</tr>
@@ -317,7 +324,7 @@
                         </tr>
                     </table>
                 </div>
-            </div> -->
+            </div>
             <div class="row">
                 <div class="col-25">
                     <label for="subject">Route</label>
@@ -401,6 +408,66 @@
                     });
                 }
             }
+
+             var placeSearch2, autocomplete2;
+                var componentForm2 = {
+                    street_number2: 'short_name',
+                    route2: 'long_name',
+                    locality2: 'long_name',
+                    administrative_area_level_2: 'short_name',
+                    country2: 'long_name',
+                    postal_code2: 'short_name'
+                };
+
+                function initAutocomplete2() {
+                    // Create the autocomplete object, restricting the search to geographical
+                    // location types.
+                    autocomplete2 = new google.maps.places.Autocomplete(
+                    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete2')),
+                        { types: ['geocode'] });
+
+                    // When the user selects an address from the dropdown, populate the address
+                    // fields in the form.
+                    autocomplete2.addListener('place_changed2', fillInAddress2);
+                }
+
+                function fillInAddress2() {
+                    // Get the place details from the autocomplete object.
+                    var place = autocomplete2.getPlace();
+
+                    for (var component in componentForm2) {
+                        document.getElementById(component).value = '';
+                        document.getElementById(component).disabled = false;
+                    }
+
+                    // Get each component of the address from the place details
+                    // and fill the corresponding field on the form.
+                    for (var i = 0; i < place.address_components.length; i++) {
+                        var addressType = place.address_components[i].types[0];
+                        if (componentForm2[addressType]) {
+                            var val = place.address_components[i][componentForm2[addressType]];
+                            document.getElementById(addressType).value = val;
+                        }
+                    }
+                }
+
+                // Bias the autocomplete object to the user's geographical location,
+                // as supplied by the browser's 'navigator.geolocation' object.
+                function geolocate2() {
+                    if (navigator.geolocation) {
+                        navigator.geolocation.getCurrentPosition(function (position) {
+                            var geolocation = {
+                                lat: position.coords.latitude,
+                                lng: position.coords.longitude
+                            };
+                            var circle = new google.maps.Circle({
+                                center: geolocation,
+                                radius: position.coords.accuracy
+                            });
+                            autocomplete2.setBounds(circle.getBounds());
+                        });
+                    }
+                }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=places&callback=initAutocomplete" async
             defer></script>
