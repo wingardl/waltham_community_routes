@@ -1,0 +1,175 @@
+<title>Route Drawing</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+  *{
+font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 400px;
+  width: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  background-color: #000;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+li a,
+.dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover,
+.dropdown:hover .dropbtn {
+  background-color: plum;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<ul>
+<img src="wpy-logo-web.jpg" height="50" width = "110%" alt="wpy logo">
+<li><a href="/">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+  <div class="dropdown-content">
+    <a href="submit_route.html">Submit Route</a>
+  </div>
+</li>
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
+  <div class="dropdown-content">
+    <a href="#">Offer A Ride</a>
+    <a href="#">Request A Ride</a>
+  </div>
+</li>
+
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+  <div class="dropdown-content">
+    <a href="map.html">Map</a>
+    <a href="feed.html">Feed</a>
+  </div>
+</li>
+</ul>
+
+<div style="margin-left:15%;">
+<h3>See user-submitted routes</h3>
+
+
+<div id ="map" style="margin-left:100px;margin-right:0;padding:1px 16px;height:400px;width:70%"></div>
+
+<script>
+
+var path;
+var map;
+var poly;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 42.3765, lng: -71.2356},
+    zoom: 15
+  });
+
+  var recentUserPath = [
+    {lat: 42.37709252946728, lng: -71.23063008862664},
+    {lat: 42.37617314640039, lng: -71.2369815595739},
+    {lat: 42.37465137933364, lng: -71.23668115216424},
+    {lat: 42.373858777715434, lng: -71.23968522626092},
+    {lat: 42.37274911864511, lng: -71.24320428448846},
+    {lat: 42.37141750188137, lng: -71.24642293530633},
+    {lat: 42.370402917778726, lng: -71.24861161786248},
+    {lat: 42.370244387532274, lng: -71.25028531628777},
+    {lat: 42.36837370040782, lng: -71.25118653851678},
+  ];
+
+  poly = new google.maps.Polyline({
+    path: recentUserPath,
+    strokeColor: '#00ced1',
+    strokeOpacity: 1,
+    strokeWeight: 3,
+    editable: false
+  });
+
+  poly.setMap(map);
+
+  var startMarker = new google.maps.Marker({
+    position: recentUserPath[0],
+    map: map,
+    title: 'Start'
+  });
+
+  var endMarker = new google.maps.Marker({
+    position: recentUserPath[recentUserPath.length - 1],
+    map: map,
+    title: 'End'
+  });
+}
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&callback=initMap">'
+// async defer></script>
