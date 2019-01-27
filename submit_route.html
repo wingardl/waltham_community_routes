@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html>
+<title> WPY </title>
+
+<head>
+    <style>
+        * {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+            box-sizing: border-box;
+        }
+
+        #map {
+            height: 100%;
+        }
+            /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+</style>
+<link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+<style>
+    #locationField,
+    #controls {
+        position: relative;
+        width: 480px;
+    }
+
+    #autocomplete {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 99%;
+    }
+
+    .label {
+        text-align: right;
+        font-weight: bold;
+        width: 100px;
+        color: #303030;
+    }
+
+    #address {
+        border: 1px solid #7e7e88;
+        background-color:#f2f2f2;
+        width: 480px;
+        padding-right: 2px;
+    }
+    #address td {
+        font-size: 10pt;
+    }
+    .field {
+        width: 99%;
+    }
+    .slimField {
+        width: 80px;
+    }
+    .wideField {
+        width: 200px;
+    }
+    #locationField {
+        height: 20px;
+        margin-bottom: 2px;
+    }
+        body {
+            margin: 0;
+        }
+
+        ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            width: 15%;
+            background-color: #000;
+            position: fixed;
+            height: 100%;
+            overflow: auto;
+        }
+
+        li a {
+            display: block;
+            color: #000;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 15px;
+        }
+
+        li a,
+        .dropbtn {
+            display: inline-block;
+            color: white;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+
+        li a:hover,
+        .dropdown:hover .dropbtn {
+            background-color: plum;
+        }
+
+        li.dropdown {
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            border-radius: 15px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            text-align: left;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #f1f1f1
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        input[type=text], select, textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+        }
+
+        label {
+            padding: 12px 12px 12px 0;
+            display: inline-block;
+        }
+
+        input[type=submit] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .col-25 {
+            float: left;
+            width: 25%;
+            margin-top: 6px;
+        }
+
+        .col-75 {
+            float: left;
+            width: 75%;
+            margin-top: 6px;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+        .col-25, .col-75, input[type=submit] {
+            width: 100%;
+            margin-top: 0;
+        }
+        }
+</style>
+</head>
+    </style>
+</head>
+
+<body>
+
+    <ul>
+        <img src="wpy-logo-web.jpg" height="50" width="110%" alt="wpy logo">
+        <li><a href="/">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+            <div class="dropdown-content">
+                <a href="submit_route.html">Submit Route</a>
+            </div>
+        </li>
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
+            <div class="dropdown-content">
+                <a href="#">Offer A Ride</a>
+                <a href="#">Request A Ride</a>
+            </div>
+        </li>
+
+        <li class="dropdown">
+            <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+            <div class="dropdown-content">
+                <a href="map.html">Map</a>
+                <a href="feed.html">Feed</a>
+            </div>
+        </li>
+    </ul>
+
+    <div class="container" style="margin-left:15%;padding:1px 16px;height:1000px;">
+        <form action="/action_page.php">
+            <div class="row">
+                <div class="col-25">
+                    <label for="fname">Origin</label>
+                </div>
+                <div class="col-75">
+                    <div id="locationField">
+                        <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="lname">Destination</label>
+                </div>
+                <div class="col-75">
+                    <input type="text" id="lname" name="lastname" placeholder="Destination">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-25">
+                    <label for="subject">Route</label>
+                </div>
+                <div class="col-75">
+                    <textarea id="subject" name="subject" placeholder="Describe your route!" style="height:200px"></textarea>
+                </div>
+            </div>
+            <div class="row">
+                <input type="submit" value="Submit">
+            </div>
+        
+      
+
+
+
+        <table id="address">
+            <tr>
+                <th class="label">Street address</th>
+                <td class="slimField"><input class="field" id="street_number" disabled="true" /></td>
+                <td class="wideField" colspan="2"><input class="field" id="route" disabled="true" /></td>
+            </tr>
+            <tr>
+                <th class="label">City</th>
+                <!-- Note: Selection of address components in this example is typical.
+                     You may need to adjust it for the locations relevant to your app. See
+                     https://developers.google.com/maps/documentation/javascript/examples/places-autocomplete-addressform
+                -->
+                <td class="wideField" colspan="3"><input class="field" id="locality" disabled="true" /></td>
+            </tr>
+            <tr>
+                <th class="label">State</th>
+                <td class="slimField"><input class="field" id="administrative_area_level_1" disabled="true" /></td>
+                <th class="label">Zip code</th>
+                <td class="wideField"><input class="field" id="postal_code" disabled="true" /></td>
+            </tr>
+            <tr>
+                <th class="label">Country</th>
+                <td class="wideField" colspan="3"><input class="field" id="country" disabled="true" /></td>
+            </tr>
+        </table>
+    </div>
+    </form>
+
+        <script>
+            // This example displays an address form, using the autocomplete feature
+            // of the Google Places API to help users fill in the information.
+
+            // This example requires the Places library. Include the libraries=places
+            // parameter when you first load the API. For example:
+            // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+            var placeSearch, autocomplete;
+            var componentForm = {
+                street_number: 'short_name',
+                route: 'long_name',
+                locality: 'long_name',
+                administrative_area_level_1: 'short_name',
+                country: 'long_name',
+                postal_code: 'short_name'
+            };
+
+            function initAutocomplete() {
+                // Create the autocomplete object, restricting the search to geographical
+                // location types.
+                autocomplete = new google.maps.places.Autocomplete(
+                    /** @type {!HTMLInputElement} */(document.getElementById('autocomplete')),
+                    { types: ['geocode'] });
+
+                // When the user selects an address from the dropdown, populate the address
+                // fields in the form.
+                autocomplete.addListener('place_changed', fillInAddress);
+            }
+
+            function fillInAddress() {
+                // Get the place details from the autocomplete object.
+                var place = autocomplete.getPlace();
+
+                for (var component in componentForm) {
+                    document.getElementById(component).value = '';
+                    document.getElementById(component).disabled = false;
+                }
+
+                // Get each component of the address from the place details
+                // and fill the corresponding field on the form.
+                for (var i = 0; i < place.address_components.length; i++) {
+                    var addressType = place.address_components[i].types[0];
+                    if (componentForm[addressType]) {
+                        var val = place.address_components[i][componentForm[addressType]];
+                        document.getElementById(addressType).value = val;
+                    }
+                }
+            }
+
+            // Bias the autocomplete object to the user's geographical location,
+            // as supplied by the browser's 'navigator.geolocation' object.
+            function geolocate() {
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(function (position) {
+                        var geolocation = {
+                            lat: position.coords.latitude,
+                            lng: position.coords.longitude
+                        };
+                        var circle = new google.maps.Circle({
+                            center: geolocation,
+                            radius: position.coords.accuracy
+                        });
+                        autocomplete.setBounds(circle.getBounds());
+                    });
+                }
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=places&callback=initAutocomplete" async
+            defer></script>
+        </body>
+
+        </html>

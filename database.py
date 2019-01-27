@@ -4,18 +4,37 @@ import gridfs
 import cgi
 import cgitb
 import os
-from http.server import BaseHTTPRequestHandler, HTTPServer
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
+from flask_wtf import FlaskForm, Form
+from wtforms import TextField
 
 app = Flask(__name__)
+app.config.from_object(__name__)
+app.config['SECRET_KEY'] = 'waltham'
 
-@app.route('/')
-def form():
-    return render_template('form.html')
-@app.route('/form', methods = ['POST', 'GET'])
-def form_post():
-    post = request.form['post']
-    return post
+class PostForm(Form):
+    form = Form({
+        "content": TextField("hi"),
+        "street": TextField("hi"),
+        "city": TextField("hi"),
+        "state": TextField("hi"),
+        "zip": TextField("hi"),
+        "long": TextField("hi"),
+        "lat": TextField("hi"),
+        "main_category": TextField("hi"),
+        "tags": TextField("hi"),
+        "timestamp": TextField("hi"),
+        "upvotes": TextField("hi"),
+    })
+
+@app.route('/post', methods ['GET', 'POST'])
+def post():
+    form = PostForm()
+    return render_template('post_form.html', title='Make a post', form=form)
+
+
+
+
 
 
 # Constants
