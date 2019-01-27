@@ -1,6 +1,7 @@
 <title>Route Drawing</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
+<head>
 <style>
   *{
 font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -88,7 +89,7 @@ li.dropdown {
 <body>
 
 <ul>
-<li><a href="/">Home</a></li>
+<li><a href="index.html">Home</a></li>
 <li><a href="about.html">About</a></li>
 <li class="dropdown">
   <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
@@ -116,8 +117,8 @@ li.dropdown {
 </li>
 </ul>
 
-<div style="margin-left:15%;">
-<h3>See user-submitted routes</h3>
+<div style="margin-left:20%;">
+<h3>See user-submitted routes here</h3>
 
 
 <div id ="map" style="margin-left:100px;margin-right:0;padding:1px 16px;height:400px;width:70%"></div>
@@ -156,17 +157,32 @@ function initMap() {
 
   poly.setMap(map);
 
+  var startName = "Kentucky fried chicken";
+  var endName = "Brandeis campus";
+
+  var originInfo = new google.maps.InfoWindow({
+    content: startName
+  });
+
+  var endNameInfo = new google.maps.InfoWindow({
+    content: endName
+  });
+
   var startMarker = new google.maps.Marker({
     position: recentUserPath[0],
     map: map,
     title: 'Start'
   });
 
-  var endMarker = new google.maps.Marker({
-    position: recentUserPath[recentUserPath.length - 1],
-    map: map,
-    title: 'End'
-  });
+ var endMarker = new google.maps.Marker({
+   position: recentUserPath[recentUserPath.length - 1],
+   map: map,
+   title: 'End'
+ });
+
+ originInfo.open(map, startMarker);
+ endNameInfo.open(map, endMarker);
+
 }
 
 </script>
