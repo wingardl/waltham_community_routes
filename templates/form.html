@@ -1,0 +1,67 @@
+<html lang ="en-US">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+<head>
+  <meta charset = "UTF-8">
+  <title> Submit feedback </title>
+<form action = "/submit-form" method = "post">
+  Type of complaint:<br>
+  <input type="text" name="main_category"><br>
+
+  Content:<br>
+  <input type="text" name="content"><br>
+
+  Street:<br>
+  <input type="text" name="street"><br>
+
+  City:<br>
+  <input type="text" name="city"><br>
+
+  State:<br>
+  <input type="text" name="state"><br>
+
+  Zip code:<br>
+  <input type="text" name="zipcode"><br>
+
+  <input type="submit" name="submit">
+</form>
+
+<script>
+
+//   const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://deishacks:louisbrandeis@waltham-tlvvt.gcp.mongodb.net/test?retryWrites=true";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("names");
+//  // perform actions on the collection object
+//   client.close();
+// });
+
+
+  $('form').submit(function () {
+    var $this = $(this)
+      , viewArr = $this.serializeArray()
+      , view = {};
+
+    for (var i in viewArr) {
+      view[viewArr[i].name] = viewArr[i].value;
+    }
+
+    jsonData = JSON.stringify(view) // json text
+
+  //  db.collection('posts')
+
+  });
+
+//  var MongoClient = require('mongodb').MongoClient, format = require('util').format;
+//  MongoClient.connect('mongodb+srv://deishacks:louisbrandeis@waltham-tlvvt.gcp.mongodb.net/test?retryWrites=true') {
+
+  }
+
+
+
+</script>
+</head>
+<body>
+  </body>
+  </html>

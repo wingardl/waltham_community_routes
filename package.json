@@ -1,0 +1,25 @@
+{
+  "name": "deis-hacks",
+  "version": "1.0.0",
+  "description": "//hi //hi this is lucy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wingardl/deis-hacks.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wingardl/deis-hacks/issues"
+  },
+  "homepage": "https://github.com/wingardl/deis-hacks#readme",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.13"
+  }
+}

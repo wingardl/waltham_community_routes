@@ -1,5 +1,6 @@
 import pymongo
 import datetime
+from flask import Flask, render_template
 
 # Constants
 URL = "mongodb+srv://deishacks:louisbrandeis@waltham-tlvvt.gcp.mongodb.net/test?retryWrites=true"
@@ -105,16 +106,23 @@ def fetch_rides(query='None'):
 
 if __name__ == "__main__":
 
-    test_post = Post("first post test", "South Street", "Waltham", "MA", "02453",
-        "71.25798773655532", "42.3663164", "Road Blockage", "construction",
-        TIMESTAMP, 0, True)
+    app = Flask(__name__)
+    app.run(host='0.0.0.0')
 
-    test_route = Route("South Street", "Waltham", "MA", "02453", "71.25798773655532",
-        "42.3663164", "Moody Street","Waltham", "MA", "02453", "-71.237476400", "42.367904200",
-        "brandeis.edu", "first route test")
+@app.route('/')
+def home():
+    return render_template('templates/form.html')
 
-    test_ride = Ride("first ride test", "South Street", "Waltham", "MA", "02453", "71.25798773655532",
-        "42.3663164", TIMESTAMP, True, "user@brandeis.edu")
+
+    # @app.route('/submit-form')
+    # test_post = Post("first post test", "South Street", "Waltham", "MA", "02453",
+    #     "71.25798773655532", "42.3663164", "Road Blockage", "construction",
+    #     TIMESTAMP, 0, True)
+    # test_route = Route("South Street", "Waltham", "MA", "02453", "71.25798773655532",
+    #     "42.3663164", "Moody Street","Waltham", "MA", "02453", "-71.237476400", "42.367904200",
+    #     "brandeis.edu", "first route test")
+    # test_ride = Ride("first ride test", "South Street", "Waltham", "MA", "02453", "71.25798773655532",
+    #     "42.3663164", TIMESTAMP, True, "user@brandeis.edu")
 
     #test_post.push()
     #test_ride.push()
