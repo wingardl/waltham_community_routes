@@ -129,14 +129,43 @@ th, td {
   }
 
   .btn {
-    background-color: black;
-    opacity: 0.6;
-    transition: 0.3s;
+    background-color: plum;
+    opacity: 1;
     border: none;
-    color: plum;
-  }
+    color: rgb(58, 49, 58) ;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.3s;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
 
-  .btn:hover {opacity: 1}
+  }
+    .btn span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.3s;
+    }
+
+.button span:after {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+  color: white;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
   </style>
     <img src="header-01.png" width = "100%" alt="wpy logo" align="middle">
@@ -212,7 +241,7 @@ th, td {
           "lat": "lat",
           "main_category": "Transit",
           "tags": "Buses",
-          "timestamp": "14:30:00",
+          "timestamp": "10:30:00",
           "upvotes": 20,
           "active": "True" },
 
@@ -256,8 +285,8 @@ th, td {
                         <h3 id="timestamp"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a
-                                id="upvotes"></a> </button>
+                        <button class="btn" onClick="onClick()"> <span>Upvotes: <a
+                                id="upvotes"></a> <i class="glyphicon glyphicon-thumbs-up"></i></span></button>
                     </div>
                 </div>
 
@@ -281,7 +310,8 @@ th, td {
                         <h3 id="timestamp2"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick2()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes2"></a>
+                        <button class="btn" onClick="onClick2()"><span> Upvotes: <a id="upvotes2"></a><i class="glyphicon glyphicon-thumbs-up"></i>
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -306,7 +336,8 @@ th, td {
                         <h3 id="timestamp3"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick3()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes3"></a>
+                        <button class="btn" onClick="onClick3()"><span> Upvotes: <a id="upvotes3"></a><i class="glyphicon glyphicon-thumbs-up"></i>
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -315,9 +346,16 @@ th, td {
         </tr>
     </div>
 </table>
-    <div class="twitter-item" max-width="280">
-      <a class="twitter-timeline" data-width="300" data-height="600" href="https://twitter.com/MBTA?ref_src=twsrc%5Etfw">Tweets by MBTA</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+  <div class= "wrapper">
+    <h3>Waltham Report Submission </h3>
+    <div class = "waltham-form">
+        <embed src="https://www.iworq.net/iworq/Web/Request.asp?cityid=426&fid=700" height = "500" width ="400"></embed><div>
     </div>
+    <h3>Live MBTA Twitter Feed</h3>
+    <div class="twitter-item">
+      <a class="twitter-timeline" data-width="400" data-height="500" href="https://twitter.com/MBTA?ref_src=twsrc%5Etfw">Tweets by MBTA</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
+  </div>
+
     <script>
         var street = myList[0].street;
         document.getElementById("street").innerHTML = street;
