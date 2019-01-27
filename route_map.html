@@ -130,8 +130,8 @@ li.dropdown {
 
 <div id ="map" style="margin-left:20%;margin-right:20%;padding:1px 16px;height:400px;width:70%;align-content: center"></div>
 
-<div>
-<h3 style="margin-left:20%;margin-right:20%;padding:1px 16px;align-self: center">
+<div style="margin-left:20%;margin-right:20%;padding:1px 16px;align-self: center">
+<h3>
   <input type="button"  value="Click to submit" onclick="submitDrawing()"></h3>
 </div>
 
@@ -144,7 +144,7 @@ var poly;
 function initMap() {
   map = new google.maps.Map(document.getElementById('map'), {
     center: {lat: 42.3765, lng: -71.2356},
-    zoom: 15;
+    zoom: 15,
     styles: [
       {
         "elementType": "geometry",
