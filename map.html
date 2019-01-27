@@ -15,7 +15,7 @@
       html, body {
         height: 100%;
         margin: 0;
-        
+
       }
     </style>
   </head>
@@ -32,21 +32,50 @@
           zoom: 15
         });
 
+        var contentString = 'This info box indicates Waltham Station.'
+
+        var infoWindow = new google.maps.InfoWindow({
+          content: contentString
+        });
+
+        var marker = new google.maps.Marker({
+          position: {lat: 42.374628, lng: -71.235429},
+          map: map,
+          title: 'Waltham Commuter Rail Station'
+        })
+
+        infoWindow.open(map, marker);
+
         var drawingManager = new google.maps.drawing.DrawingManager({
           drawingMode: google.maps.drawing.OverlayType.MARKER,
           drawingControl: true,
           drawingControlOptions: {
             position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
+            drawingModes: ['marker', 'circle', 'polygon', 'polyline']
           },
           markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
           circleOptions: {
-            fillColor: '#ffff00',
-            fillOpacity: 1,
-            strokeWeight: 5,
+            strokeColor: '#ff8c00',
+            fillColor: '#ff8c00',
+            fillOpacity: .3,
+            strokeWeight: 1,
             clickable: false,
             editable: true,
             zIndex: 1
+          },
+          polylineOptions: {
+            strokeColor: '#00ced1',
+            strokeOpacity: 1,
+            strokeWeight: 3,
+            editable: true
+          },
+          polygonOptions: {
+            strokeColor: '#00ced1',
+            strokeOpacity: 1,
+            fillColor: '#00ced1',
+            fillOpacity: .3,
+            strokeWeight: 3,
+            editable: true
           }
         });
         drawingManager.setMap(map);
