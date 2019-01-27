@@ -9,6 +9,7 @@ TIMESTAMP = datetime.datetime.now()
 client = pymongo.MongoClient(URL)
 connect = client.test
 db = client["test"]
+fs = gridfs.GridFS(db)
 
 post_col = db["posts"]
 route_col = db["routes"]
@@ -42,11 +43,13 @@ class Route:
         origin_long, origin_lat, dest_street, dest_city, dest_state, dest_zip,
         dest_long, dest_lat, image_URL, comment):
 
+        image_id = fs.put(open(image_URL, 'rb'))
+
         self.dict = {"origin_street": origin_street, "origin_city": origin_city,
             "origin_state": origin_state, "origin_zip": origin_zip, "origin_long": origin_long,
             "origin_lat": origin_lat, "dest_street": dest_street, "dest_city": dest_city,
             "dest_state": dest_state, "dest_zip": dest_zip, "dest_long": dest_long,
-            "dest_lat": dest_lat, "image_URL": image_URL, "comment": comment}
+            "dest_lat": dest_lat, "image_id": image_id, "comment": comment}
 
     def push(self):
 
@@ -103,6 +106,9 @@ def fetch_rides(query='None'):
                 rides.append(ride)
     return rides
 
+def fetch_image(image_id):
+    return fs.find(image_id)
+
 
 if __name__ == "__main__":
 
@@ -124,12 +130,13 @@ def home():
     # test_ride = Ride("first ride test", "South Street", "Waltham", "MA", "02453", "71.25798773655532",
     #     "42.3663164", TIMESTAMP, True, "user@brandeis.edu")
 
+
     #test_post.push()
     #test_ride.push()
-    #test_route.push()
+    test_route.push()
 
-    #for post in post_col.find():
-    #    print(post)
+    for route in route_col.find({},{"image_id": 1}):
+       fetch_image(route["image_id"])
 
     #post_col.delete_many({})
     #route_col.delete_many({})
@@ -138,6 +145,7 @@ def home():
     #print(fetch_posts())
     #print(fetch_routes())
     #print(fetch_rides())
+
 
     #print(fetch_posts({"active": True}))
     #print(fetch_routes())
