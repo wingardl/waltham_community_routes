@@ -4,13 +4,25 @@
 
 <head>
     <style>
-
-        *{
-         font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+        * {
+            font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
         }
 
         body {
             margin: 0;
+        }
+
+        .grid-container{
+            display: grid;
+            grid-column-gap: 5px;
+            grid-template-columns: auto auto;
+            padding: 5px;
+        }
+
+        .grid-item {
+            border: 1px solid;
+            padding: 30px;
+            text-align: center;
         }
 
         ul {
@@ -81,7 +93,7 @@
 <body>
 
     <ul>
-        <img src="wpy-logo-web.jpg" height="50" width = "110%" alt="wpy logo">
+        <img src="wpy-logo-web.jpg" height="50" width="110%" alt="wpy logo">
         <li><a href="about.html">About</a></li>
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
@@ -96,7 +108,7 @@
                 <a href="#">Request A Ride</a>
             </div>
         </li>
-        
+
         <li class="dropdown">
             <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
             <div class="dropdown-content">
@@ -104,27 +116,11 @@
                 <a href="feed.html">Feed</a>
             </div>
         </li>
-        </ul>
+    </ul>
 
-    <div style="margin-left:15%;padding:1px 16px;height:1000px;">
-        <h2>About</h2>
-        <h3>Waltham Community Moves</h3> 
-        <h3>Waltham Partnership For Youth</h3>
-        <p>WPY’s transportation study’s main goal is to help those in transit, this site will allow
-        students to give each other tips and ideas on how to get around, problems that are up in
-        certain areas as well as slow buses and bus changes – things that also go into the site are issues
-        surrounding certain neighborhoods, from side walks that need to be repaved or even places
-        where side walks are needed. The information that we learn from the study can eventually also
-        go into the site to help promote and inform people of everyday life in Waltham.
-        And while yes some beautification issues surrounding Waltham cannot be completed
-        with a simple click of a button, the more people who are aware of the problems, and want to
-        help can help by signing petitions, raising money, going to government officials to ensure
-        Waltham stays a safe and accessible for everyone. In many ways this is similar to a 311 for
-        students and parents.</p>
-
-
+    <div class="grid-container" style="margin-left:15%;padding:1px 16px;height:1000px;">
+        <div class="grid-item">twitter here</div>
     </div>
 
-</body>
-
+    </body>
 </html>
