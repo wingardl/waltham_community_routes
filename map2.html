@@ -1,0 +1,105 @@
+<title>Drawing Tools</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<script>
+// This example requires the Drawing library. Include the libraries=drawing
+// parameter when you first load the API. For example:
+// <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=drawing">
+
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 42.3765, lng: -71.2356},
+    zoom: 15
+  });
+
+  var poly = new google.maps.Polyline({
+    strokeColor: '#00ced1',
+    strokeOpacity: 1,
+    strokeWeight: 3,
+    editable: true
+  });
+
+  poly.setMap(map);
+
+  // Add a listener for the click event
+  map.addListener('click', addLatLng);
+
+//         var drawingManager = new google.maps.drawing.DrawingManager({
+//           drawingMode: google.maps.drawing.OverlayType.MARKER,
+//           drawingControl: true,
+//           drawingControlOptions: {
+//             position: google.maps.ControlPosition.TOP_CENTER,
+// // //            drawingModes: ['marker', 'circle', 'polygon', 'polyline']
+//                drawingModes: ['polyline']
+//            },
+//           markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
+//           circleOptions: {
+//             strokeColor: '#ff8c00',
+//             fillColor: '#ff8c00',
+//             fillOpacity: .3,
+//             strokeWeight: 1,
+//             clickable: false,
+//             editable: true,
+//             zIndex: 1
+//           },
+//           polylineOptions: {
+//             strokeColor: '#00ced1',
+//             strokeOpacity: 1,
+//             strokeWeight: 3,
+//             editable: true
+//           },
+//           polygonOptions: {
+//             strokeColor: '#00ced1',
+//             strokeOpacity: 1,
+//             fillColor: '#00ced1',
+//             fillOpacity: .3,
+//             strokeWeight: 3,
+//             editable: true
+//           }
+//        });
+//
+//   drawingManager.setMap(map);
+
+  function addLatLng(event) {
+    //EMILY SAYS:
+    //variable path below is an MVCArray which has stored in it all the latitude
+    //and longitude information!
+    var path = poly.getPath();
+
+  // Because path is an MVCArray, we can simply append a new coordinate
+  // and it will automatically appear.
+    path.push(event.latLng);
+
+  // Add a new marker at the new plotted point on the polyline.
+    // var marker1 = new google.maps.Marker({
+    //   position: event.latLng,
+    //   title: '#' + path.getLength(),
+    //   map: map
+    // })
+
+    console.log(path.toString());
+  }
+
+
+
+
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&callback=initMap">'
+// async defer></script>

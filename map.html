@@ -32,7 +32,70 @@
           zoom: 15
         });
 
-        var contentString = 'This info box indicates Waltham Station.'
+        var poly = new google.maps.Polyline({
+          strokeColor: '#000000',
+          strokeOpacity: 1.0,
+          strokeWeight: 3
+        });
+
+        poly.setMap(map);
+
+        // Add a listener for the click event
+        map.addListener('click', addLatLng);
+
+//         var drawingManager = new google.maps.drawing.DrawingManager({
+//           drawingMode: google.maps.drawing.OverlayType.MARKER,
+//           drawingControl: true,
+//           drawingControlOptions: {
+//             position: google.maps.ControlPosition.TOP_CENTER,
+// //            drawingModes: ['marker', 'circle', 'polygon', 'polyline']
+//               drawingModes: ['polyline']
+//           },
+//           markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
+//           circleOptions: {
+//             strokeColor: '#ff8c00',
+//             fillColor: '#ff8c00',
+//             fillOpacity: .3,
+//             strokeWeight: 1,
+//             clickable: false,
+//             editable: true,
+//             zIndex: 1
+//           },
+//           polylineOptions: {
+//             strokeColor: '#00ced1',
+//             strokeOpacity: 1,
+//             strokeWeight: 3,
+//             editable: true
+//           },
+//           polygonOptions: {
+//             strokeColor: '#00ced1',
+//             strokeOpacity: 1,
+//             fillColor: '#00ced1',
+//             fillOpacity: .3,
+//             strokeWeight: 3,
+//             editable: true
+//           }
+//        });
+
+//        drawingManager.setMap(map);
+
+        function addLatLng(event) {
+          var path = poly.getPath();
+
+        // Because path is an MVCArray, we can simply append a new coordinate
+        // and it will automatically appear.
+          path.push(event.latLng);
+
+        // Add a new marker at the new plotted point on the polyline.
+          var marker1 = new google.maps.Marker({
+            position: event.latLng,
+            title: '#' + path.getLength(),
+            map: map
+          })
+          infoWindow.open(map, marker1);
+        }
+
+        var contentString = poly.getPath().getAt(0);
 
         var infoWindow = new google.maps.InfoWindow({
           content: contentString
@@ -43,42 +106,6 @@
           map: map,
           title: 'Waltham Commuter Rail Station'
         })
-
-        infoWindow.open(map, marker);
-
-        var drawingManager = new google.maps.drawing.DrawingManager({
-          drawingMode: google.maps.drawing.OverlayType.MARKER,
-          drawingControl: true,
-          drawingControlOptions: {
-            position: google.maps.ControlPosition.TOP_CENTER,
-            drawingModes: ['marker', 'circle', 'polygon', 'polyline']
-          },
-          markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-          circleOptions: {
-            strokeColor: '#ff8c00',
-            fillColor: '#ff8c00',
-            fillOpacity: .3,
-            strokeWeight: 1,
-            clickable: false,
-            editable: true,
-            zIndex: 1
-          },
-          polylineOptions: {
-            strokeColor: '#00ced1',
-            strokeOpacity: 1,
-            strokeWeight: 3,
-            editable: true
-          },
-          polygonOptions: {
-            strokeColor: '#00ced1',
-            strokeOpacity: 1,
-            fillColor: '#00ced1',
-            fillOpacity: .3,
-            strokeWeight: 3,
-            editable: true
-          }
-        });
-        drawingManager.setMap(map);
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
