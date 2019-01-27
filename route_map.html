@@ -1,0 +1,81 @@
+<title>Route Drawing</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 400px;
+  width: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  margin: 0;
+}
+</style>
+</head>
+<body>
+  <h3>Enter your route</h3>
+  <h3><input type="button" value="Click to submit" onclick="submitDrawing()"></h3>
+<div id="map"></div>
+<script>
+
+var path;
+var map;
+var poly;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 42.3765, lng: -71.2356},
+    zoom: 15
+  });
+  poly = new google.maps.Polyline({
+    strokeColor: '#00ced1',
+    strokeOpacity: 1,
+    strokeWeight: 3,
+    editable: true
+  });
+  poly.setMap(map);
+  // Add a listener for the click event
+  map.addListener('click', addLatLng);
+
+  var contentString = "Click anywhere to add waypoints which represent your route.";
+  var infoWindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  var marker = new google.maps.Marker({
+    position: {lat: 42.374628, lng: -71.235429},
+    map: map,
+    title: 'Waltham Commuter Rail Station'
+  })
+  infoWindow.open(map, marker);
+  function addLatLng(event) {
+    //
+    //
+    //EMILY SAYS:
+    //variable path below is an MVCArray which has stored in it all the latitude
+    //and longitude information!
+    //
+    //
+    path = poly.getPath();
+
+    path.push(event.latLng);
+
+    console.log(path.toString());
+  }
+}
+
+function submitDrawing() {
+  //alert("Thank you! Your route has been added to our database.");
+  //alert(path.pop().toString());
+  alert(path.getArray().toString());
+  //ideally we pass the path array here and store it somewhere.
+}
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&callback=initMap">'
+// async defer></script>
