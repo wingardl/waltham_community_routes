@@ -13,6 +13,7 @@ font-family: Futura, "Trebuchet MS", Arial, sans-serif;
   width: 150%;
   margin-left: 15%;
   align-self: center;
+
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -128,10 +129,12 @@ li.dropdown {
 <div id="header">Drag the pins to share your favorite routes</div>
 
 
-<div id ="map" style="margin-left:20%;margin-right:20%;padding:1px 16px;height:400px;width:70%;align-content: center"></div>
+<div id ='map'>
 
-<div style="margin-left:20%;margin-right:20%;padding:1px 16px;align-self: center">
-<h3>
+
+
+<div>
+<h3 style = margin-left:"20%" margin-right:"20%" padding:"1px 16px" align-self: "center">
   <input type="button"  value="Click to submit" onclick="submitDrawing()"></h3>
 </div>
 
@@ -361,7 +364,7 @@ function initMap() {
       }
     ]
   });
-  
+
   poly = new google.maps.Polyline({
     strokeColor: '#00ced1',
     strokeOpacity: 1,
