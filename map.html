@@ -1,8 +1,4 @@
-
-
-
-
-<title>Drawing Tools</title>
+<title>Live Updates Map</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
 <head>
@@ -118,7 +114,7 @@
       </div>
     </li>
   </ul>
-  
+
 
   <div id ="map" style="margin-left:15%;padding:1px 16px;height:1000px;"></div>
   <!-- <div><button id="locations">Visualize Locations</button>
@@ -394,29 +390,7 @@ var map;
       ]
     });
 
-    var drawingManager = new google.maps.drawing.DrawingManager({
-      drawingMode: google.maps.drawing.OverlayType.MARKER,
-      drawingControl: true,
-      drawingControlOptions: {
-        position: google.maps.ControlPosition.TOP_CENTER,
-        drawingModes: ['marker', 'circle', 'polygon', 'polyline', 'rectangle']
-      },
-      markerOptions: {icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'},
-      circleOptions: {
-        fillColor: '#ffff00',
-        fillOpacity: 1,
-        strokeWeight: 5,
-        clickable: false,
-        editable: true,
-        zIndex: 1
-      }
-    });
-    drawingManager.setMap(map);
-
     //update();
-  
-
-
 
     function getJSONMarkers(){
       const markers = [
@@ -431,6 +405,18 @@ var map;
       "tags": "construction work",
       "timestamp": "12:00:00",
       "upvotes": "13",
+      "active": "True"},
+      {"content": "Inbound commuter rails delayed at least 20 mins...",
+      "street": "123 commuter rail street",
+      "city": "Waltham",
+      "state": "MA",
+      "zip": "02452",
+      "long": -71.235429,
+      "lat": 42.374628,
+      "main_category": "delay",
+      "tags": "commuter rail",
+      "timestamp": "03:21:12",
+      "upvotes": "2",
       "active": "True"}];
       return markers;
     }
@@ -451,6 +437,8 @@ var map;
 
     }
 
+    var problemString;
+    var infoWindow;
 
     // button.addEventListener('click', () => {
       const resourceMarkers = getJSONMarkers();
@@ -465,9 +453,12 @@ var map;
           icon: blackStar
         // })
         })
-
+        problemString = resource.content;
+        infoWindow = new google.maps.InfoWindow({
+          content: problemString
+        });
+        infoWindow.open(map, marker);
         // marker.setMap(map);
-
       }
     }
 
