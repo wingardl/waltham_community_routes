@@ -33,7 +33,14 @@
         width: 480px;
     }
 
-    #autocomplete {
+    #autocomplete1 {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 99%;
+    }
+
+    #autocomplete2 {
         position: absolute;
         top: 0px;
         left: 0px;
@@ -47,13 +54,23 @@
         color: #303030;
     }
 
-    #address {
+    #address1 {
         border: none;
         background-color:#f2f2f2;
         width: 480px;
         padding-right: 2px;
     }
-    #address td {
+    #address1 td {
+        font-size: 10pt;
+    }
+
+     #address2 {
+        border: none;
+        background-color:#f2f2f2;
+        width: 480px;
+        padding-right: 2px;
+    }
+    #address2 td {
         font-size: 10pt;
     }
     .field {
@@ -246,9 +263,9 @@
                 </div>
                 <div class="col-75">
                     <div id="originField">
-                        <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
+                        <input id="autocomplete1" placeholder="Enter origin address" onFocus="geolocate()" type="text" />
                     </div>
-                    <table id="address">
+                    <table id="address1">
                         <tr>
                             <tr class="label">Street address</tr>
                             <td class="slimField"><input class="field" id="street_number" disabled="true" /></td>
@@ -281,9 +298,9 @@
                 </div>
                 <div class="col-75">
                     <div id="destinationField">
-                        <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
+                        <input id="autocomplete2" placeholder="Enter destination address" onFocus="geolocate()" type="text" />
                     </div>
-                    <table id="address">
+                    <table id="address2">
                         <tr>
                         <tr class="label">Street address</tr>
                         <td class="slimField"><input class="field" id="street_number" disabled="true" /></td>
