@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+<title> WPY </title>
+<head>
+  <style>
+
+    *{
+     font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+    }
+
+    body {
+      margin: 0;
+      background-color: #f2f2f2;
+    }
+
+     ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      width: 15%;
+      background-color: #000;
+      position: fixed;
+      height: 100%;
+      overflow: auto;
+    }
+
+li a {
+      display: block;
+      color: rgb(0, 0, 0);
+      padding: 8px 16px;
+      text-decoration: none;
+      border-radius: 15px;
+    }
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: plum;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    grid-template-rows: auto auto;
+    grid-gap: 10px;
+    background-color: #f2f2f2;;
+    padding: 10px;
+    border-radius: 5px;
+    }
+
+    .grid-container > div{
+    background-color: #008080;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 20px;
+    border-radius: 5px;
+    }
+
+    .item1 {
+    grid-column: 1;
+    grid-row: 1;
+    }
+
+    .item2 {
+    grid-column: 2/4;
+    grid-row: 1/3
+    }
+
+    .item3 {
+    grid-column: 1;
+    grid-row:2;
+    }
+
+    .item4 {
+    grid-column: 4;
+    grid-row: 1/3;
+    }
+
+    table, th, td {
+      background-color:#f2f2f2;;
+    }
+    th, td {
+      padding: 15px;
+    }
+
+    button {
+  background-color: #000000; /* pink */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+</style>
+</head>
+
+<body>
+
+<ul>
+  <img src="wpy-logo-web.jpg" height="50" width="110%" alt="wpy logo">
+  <li><a href="index.html">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li class="dropdown">
+    <a href="community_routes.html" class="dropbtn">Community Routes</a>
+    <div class="dropdown-content">
+      <a href="submit_route.html">Submit Route</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+    <div class="dropdown-content">
+      <a href="map.html">Map</a>
+      <a href="feed.html">Feed</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
+    <div class="dropdown-content">
+      <a href="offer_ride.html">Offer A Ride</a>
+      <a href="request_ride.html">Request A Ride</a>
+    </div>
+  </li>
+</ul>
+
+<script>
+  var myList =
+    [
+
+      {
+        "origin_street": "Moody Street",
+        "origin_city": "Waltham",
+        "origin_state": "MA",
+        "origin_zip": "02453",
+        "origin_long": -71.237470,
+        "origin_lat": 42.367930,
+        "dest_street": "South Street",
+        "dest_city": "Waltham",
+        "dest_state": "MA",
+        "dest_zip": "02453",
+        "dest_long": -71.256680,
+        "dest_lat": 42.365090,
+        "image_URL": "brandeis.edu",
+        "comment": "Cool shortcut to South Street!"
+      },
+
+      {
+        "origin_street": "Fisk Avenue",
+        "origin_city": "Waltham",
+        "origin_state": "MA",
+        "origin_zip": "02453",
+        "origin_long": -71.254810,
+        "origin_lat": 42.372640,
+        "dest_street": "South Street",
+        "dest_city": "Waltham",
+        "dest_state": "MA",
+        "dest_zip": "02453",
+        "dest_long": -71.256680,
+        "dest_lat": 42.365090,
+        "image_URL": "brandeis.edu",
+        "comment": "You can cut through North Quad to get to Walgreens!"
+      },
+
+      {
+        "origin_street": "Main Street",
+        "origin_city": "Waltham",
+        "origin_state": "MA",
+        "origin_zip": "02453",
+        "origin_long": -71.266430,
+        "origin_lat": 42.376680,
+        "dest_street": "Moody Street",
+        "dest_city": "Waltham",
+        "dest_state": "MA",
+        "dest_zip": "02453",
+        "dest_long": -71.237470,
+        "dest_lat": 42.367930,
+        "image_URL": "brandeis.edu",
+        "comment": "Main Street is always really well-lit at night."
+      }
+    ]
+
+  // function buildHtmlTable(selector) {
+  //   var rows = addAllColumnHeaders(myList, selector);
+
+  //   for (var i = 0; i < myList.length; i++) {
+  //     var row$ = $('<tr/>');
+  //     for (var rowInedex = 0; rowIndex < rows.length; rowIndex++) {
+  //       var cellValue = myList[i][columns[colIndex]];
+
+  //       if (cellValue == null) cellValue = "";
+  //       else cellValue += ;
+
+  //       row$.append($('<td/>').html(cellValue + "<p>"));
+
+
+  //     }
+  //     $(selector).append(row$);
+
+  //   }
+  // }
+
+  // // Adds a header row to the table and returns the set of columns.
+  // // Need to do union of keys from all records as some records may not contain
+  // // all records.
+  // function addAllRows(myList, selector) {
+  //   var rowSet = [];
+  //   var headerTr$ = $('<tr/>');
+
+  //   for (var i = 0; i < myList.length; i++) {
+  //     var rowHash = myList[i];
+  //     for (var key in rowHash) {
+
+  //       if ($.inArray(key, columnSet) == -1) {
+  //         if (key == 'origin_street' || key == 'dest_street' || key == 'comment' || key == 'upvotes') {
+  //           columnSet.push(key);
+  //           headerTr$.append($('<th/>').html(key));
+  //         }
+
+  //       }
+  //     }
+  //   }
+  //   $(selector).append(headerTr$);
+
+  //   return columnSet;
+  // }
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- <body onLoad="buildHtmlTable('#excelDataTable')">
+  <table id="excelDataTable" border="1" padding="15px" ;>
+  </table> -->
+
+</div>
+  <div style="margin-left:15%;padding:1px 16px;height:1000px;">
+    <table style="width:100%">
+      <tr>
+      <td>
+        <div class="grid-container">
+          <div class="item1">
+            <h4>Eliza</h4>
+
+          </div>
+          <div class="item2">
+            <p>I usually leave school at 4pm on Mondays and Thursdays. I live on Lexington St.
+            I can offer a ride to 2 others as well. Let me know! :) </p>
+          </div>
+          <div class="item3">
+            <h4>M,Th</h4>
+            <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4pm&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h3>
+          </div>
+          <div class="item4">
+            <button type="button">Contact</button>
+          </div>
+        </div>
+      </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="grid-container">
+            <div class="item1">
+              <h4>Mia</h4>
+            </div>
+            <div class="item2">
+              <p>I leave school at 5pm every day after basketball practice. I live by Brandeis University and
+              have room for 4 others in my car. </p>
+            </div>
+            <div class="item3">
+              <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;M,T,W,Th,F&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</h4>
+              <h3>5pm</h3>
+            </div>
+            <div class="item4">
+              <button type="button">Contact</button>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+
+  </body>
+</html>

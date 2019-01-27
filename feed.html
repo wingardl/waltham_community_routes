@@ -1,36 +1,59 @@
 <!DOCTYPE html>
 <html>
 <title> WPY </title>
-
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <head>
 
   <style>
-  .grid-container {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    grid-gap: 10px;
-    background-color:rgb(0, 0, 0);
-    padding: 10px;
+  table, th, td {
+ background-color:#f2f2f2;
+}
+th, td {
+  padding: 15px;
+}
 
-  }
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  grid-template-rows: auto auto;
+  grid-gap: 10px;
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 5px;
+}
 
-  .grid-container > div{
-    background-color: black;
-    text-align: center;
-    padding: 20px 0;
-    color:white;
-    font-size: 20px;
+.grid-container > div{
+  background-color: plum;
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+  border-radius: 5px;
+}
 
-  }
+.item1 {
+  grid-column: 1;
+  grid-row: 1;
+}
 
-  .item1 {
-    grid-column: 1 / 3;
-  }
+.item2 {
+  grid-column: 2/4;
+  grid-row: 1/3
+}
 
-  .item2 {
-    grid-column: 3;
+.item3 {
+  grid-column: 1;
+  grid-row:2;
+}
 
-  }
+.item4 {
+  grid-column: 4;
+  grid-row: 1/2;
+}
+.item5 {
+  grid-column: 4;
+  grid-row: 2/3;
+}
+
 
   * {
     font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
@@ -109,13 +132,18 @@
 </head>
 
 <body>
+    <script>
+
+
+        </script>
+
 
   <ul>
-  
+
     <li><a href="/">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+      <a href="community_routes.html" class="dropbtn">Community Routes</a>
       <div class="dropdown-content">
         <a href="submit_route.html">Submit Route</a>
       </div>
@@ -133,8 +161,8 @@
     <li class="dropdown">
         <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
         <div class="dropdown-content">
-            <a href="#">Offer A Ride</a>
-            <a href="#">Request A Ride</a>
+            <a href="offer_ride.html">Offer A Ride</a>
+            <a href="request_ride.html">Request A Ride</a>
         </div>
     </li>
   </ul>
@@ -143,7 +171,8 @@
 
 
   <div class="grid-container" style="margin-left:15%;padding:1px 16px;height:1000px;">
-    <div class="feed-item">
+
+    <div class="feed-item"> </div>
       <script>
       console.log("hello");
       var myList =
@@ -189,70 +218,154 @@
           "active": "True" }
             ]
 
-
-
-      function buildHtmlTable(selector) {
-        var columns = addAllColumnHeaders(myList, selector);
-
-        for (var i = 0; i < myList.length; i++) {
-          var row$ = $('<tr/>');
-          for (var colIndex = 0; colIndex < columns.length; colIndex++) {
-            var cellValue = myList[i][columns[colIndex]];
-
-            if (cellValue == null) cellValue = "";
-            else cellValue += "<p> "+"<p> "+"<p>         "+"<p>   "+"<p>   "+"<p>  "+"<p>  ";
-
-            row$.append($('<td/>').html(cellValue+"<p>"));
-
-
-          }
-          $(selector).append(row$);
-
-        }
-      }
-
-      // Adds a header row to the table and returns the set of columns.
-      // Need to do union of keys from all records as some records may not contain
-      // all records.
-      function addAllColumnHeaders(myList, selector) {
-        var columnSet = [];
-        var headerTr$ = $('<tr/>');
-
-        for (var i = 0; i < myList.length; i++) {
-          var rowHash = myList[i];
-          for (var key in rowHash) {
-
-            if ($.inArray(key, columnSet) == -1) {
-              if(key == 'content' || key == 'street' || key == 'timestamp' || key == 'upvotes'){
-                columnSet.push(key);
-                headerTr$.append($('<th/>').html(key));
-            }
-
-            }
-          }
-        }
-        $(selector).append(headerTr$);
-
-        return columnSet;
-      }
       </script>
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-      <body onLoad="buildHtmlTable('#excelDataTable')">
+      <!-- <body onLoad="buildHtmlTable('#excelDataTable')">
         <table id="excelDataTable" border="1"  padding= "15px";>
         </table>
-      </body>
+      </body> -->
+    <table style="width:100%">
+        <tr>
+            <td>
+                <div class="grid-container">
+                    <div class="item1">
+                        <h4>Location: </h4>
+                        <h3 id="street"> </h3>
+                    </div>
+                    <div class="item2">
+                        <p id="content"></p>
+                    </div>
+                    <div class="item3">
+                        <h4>Main Category: </h4>
+                        <h3 id="main_category"></h3>
+                    </div>
+                    <div class="item4">
+                        <h3 id="timestamp"></h3>
+                    </div>
+                    <div class="item5">
+                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a
+                                id="upvotes"></a> </button>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="grid-container">
+                    <div class="item1">
+                        <h4>Location: </h4>
+                        <h3 id="street2"> </h3>
+                    </div>
+                    <div class="item2">
+                        <p id="content2"></p>
+                    </div>
+                    <div class="item3">
+                        <h4>Main Category: </h4>
+                        <h3 id="main_category2"></h3>
+                    </div>
+                    <div class="item4">
+                        <h3 id="timestamp2"></h3>
+                    </div>
+                    <div class="item5">
+                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes2"></a>
+                        </button>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="grid-container3">
+                    <div class="item1">
+                        <h4>Location: </h4>
+                        <h3 id="street3"> </h3>
+                    </div>
+                    <div class="item2">
+                        <p id="content3"></p>
+                    </div>
+                    <div class="item3">
+                        <h4>Main Category: </h4>
+                        <h3 id="main_category3"></h3>
+                    </div>
+                    <div class="item4">
+                        <h3 id="timestamp3"></h3>
+                    </div>
+                    <div class="item5">
+                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes3"></a>
+                        </button>
+                    </div>
+                </div>
+
+            </td>
+        </tr>
     </div>
-
-
-
-
-
-
-
 
     <div class="twitter-item">
       <a class="twitter-timeline" data-width="300" data-height="600" href="https://twitter.com/MBTA?ref_src=twsrc%5Etfw">Tweets by MBTA</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></div>
     </div>
+    <script>
+        var street = myList[0].street;
+        document.getElementById("street").innerHTML = street;
+
+        var upvotes = myList[0].upvotes;
+        document.getElementById("upvotes").innerHTML = upvotes;
+        function onClick() {
+            upvotes += 1;
+            document.getElementById("upvotes").innerHTML = upvotes;
+        };
+        var main_category = myList[0].main_category;
+        document.getElementById("main_category").innerHTML = main_category;
+
+        var content = myList[0].content;
+        document.getElementById("content").innerHTML = content;
+
+        var timestamp = myList[0].timestamp;
+        document.getElementById("timestamp").innerHTML = timestamp;
+
+
+        var street2 = myList[1].street;
+            document.getElementById("street2").innerHTML = street2;
+
+            var upvotes2 = myList[1].upvotes;
+            document.getElementById("upvotes2").innerHTML = upvotes2;
+            function onClick() {
+                upvotes += 1;
+                document.getElementById("upvotes").innerHTML = upvotes;
+            };
+            var main_category2 = myList[1].main_category;
+            document.getElementById("main_category2").innerHTML = main_category2;
+
+            var content2 = myList[1].content;
+            document.getElementById("content2").innerHTML = content2;
+
+            var timestamp2 = myList[1].timestamp;
+            document.getElementById("timestamp2").innerHTML = timestamp2;
+
+
+
+
+            var street3 = myList[2].street;
+                document.getElementById("street3").innerHTML = street3;
+
+                var upvotes3 = myList[2].upvotes;
+                document.getElementById("upvotes3").innerHTML = upvotes3;
+                function onClick() {
+                    upvotes += 1;
+                    document.getElementById("upvote3").innerHTML = upvote3;
+                };
+                var main_category3 = myList[2].main_category;
+                document.getElementById("main_category3").innerHTML = main_category3;
+
+                var content3 = myList[2].content;
+                document.getElementById("content3").innerHTML = content3;
+
+                var timestamp3 = myList[2].timestamp;
+                document.getElementById("timestamp3").innerHTML = timestamp3;
+    </script>
+
+
 
   </body>
   </html>
