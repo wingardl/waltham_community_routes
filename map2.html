@@ -1,4 +1,4 @@
-<title>Drawing Tools</title>
+<title>Path Drawing</title>
 <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 <meta charset="utf-8">
 <style>
@@ -75,10 +75,28 @@ function initMap() {
 //
 //   drawingManager.setMap(map);
 
+  var contentString = "Click to add waypoints which represent your route.";
+
+  var infoWindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+
+  var marker = new google.maps.Marker({
+    position: {lat: 42.374628, lng: -71.235429},
+    map: map,
+    title: 'Waltham Commuter Rail Station'
+  })
+
+  infoWindow.open(map, marker);
+
   function addLatLng(event) {
+    //
+    //
     //EMILY SAYS:
     //variable path below is an MVCArray which has stored in it all the latitude
     //and longitude information!
+    //
+    //
     var path = poly.getPath();
 
   // Because path is an MVCArray, we can simply append a new coordinate
@@ -94,10 +112,6 @@ function initMap() {
 
     console.log(path.toString());
   }
-
-
-
-
 }
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
