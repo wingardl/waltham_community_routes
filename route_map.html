@@ -1,0 +1,186 @@
+<title>Route Drawing</title>
+<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+<meta charset="utf-8">
+<style>
+  *{
+font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+
+/* Always set the map height explicitly to define the size of the div
+ * element that contains the map. */
+#map {
+  height: 400px;
+  width: 100%;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+}
+
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 15%;
+  background-color: #000;
+  position: fixed;
+  height: 100%;
+  overflow: auto;
+}
+
+li a {
+  display: block;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 15px;
+}
+
+li a,
+.dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover,
+.dropdown:hover .dropbtn {
+  background-color: plum;
+}
+
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 15px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
+</head>
+
+<body>
+
+<ul>
+<img src="wpy-logo-web.jpg" height="50" width = "110%" alt="wpy logo">
+<li><a href="/">Home</a></li>
+<li><a href="about.html">About</a></li>
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+  <div class="dropdown-content">
+    <a href="submit_route.html">Submit Route</a>
+  </div>
+</li>
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
+  <div class="dropdown-content">
+    <a href="#">Offer A Ride</a>
+    <a href="#">Request A Ride</a>
+  </div>
+</li>
+
+<li class="dropdown">
+  <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+  <div class="dropdown-content">
+    <a href="map.html">Map</a>
+    <a href="feed.html">Feed</a>
+  </div>
+</li>
+</ul>
+
+<div style="margin-left:15%;">
+<h3>Enter your route</h3>
+<h3><input type="button" value="Click to submit" onclick="submitDrawing()"></h3>
+</div>
+
+<div id ="map" style="margin-left:160px;margin-right:0;padding:1px 16px;height:400px;width:70%"></div>
+
+<script>
+
+var path;
+var map;
+var poly;
+
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: 42.3765, lng: -71.2356},
+    zoom: 15
+  });
+  poly = new google.maps.Polyline({
+    strokeColor: '#00ced1',
+    strokeOpacity: 1,
+    strokeWeight: 3,
+    editable: true
+  });
+  poly.setMap(map);
+  // Add a listener for the click event
+  map.addListener('click', addLatLng);
+
+  var contentString = "Click anywhere to add waypoints which represent your route.";
+  var infoWindow = new google.maps.InfoWindow({
+    content: contentString
+  });
+  var marker = new google.maps.Marker({
+    position: {lat: 42.374628, lng: -71.235429},
+    map: map,
+    title: 'Waltham Commuter Rail Station'
+  })
+  infoWindow.open(map, marker);
+  function addLatLng(event) {
+    //
+    //
+    //EMILY SAYS:
+    //variable path below is an MVCArray which has stored in it all the latitude
+    //and longitude information!
+    //
+    //
+    path = poly.getPath();
+
+    path.push(event.latLng);
+
+    console.log(path.toString());
+  }
+}
+
+function submitDrawing() {
+  //alert("Thank you! Your route has been added to our database.");
+  //alert(path.pop().toString());
+  alert(path.getArray().toString());
+
+  //ideally we pass the path array here and store it somewhere.
+  //access that array by typing path.getArray().toString() which will give you
+  //the lat long pairs in string format ex. "(3, 4), (1, 2), (4, 5)".
+}
+
+</script>
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&libraries=drawing&callback=initMap">
+// <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBX9GFC7YWEnEBGM6aWQic5tq7OZ91jwFM&callback=initMap">'
+// async defer></script>
