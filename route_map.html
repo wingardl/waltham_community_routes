@@ -9,8 +9,8 @@ font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-  height: 400px;
-  width: 100%;
+  height: 600px;
+  width: 150%;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
@@ -83,6 +83,12 @@ li.dropdown {
 .dropdown:hover .dropdown-content {
   display: block;
 }
+
+#header{
+  margin-left:15%;
+  font-size: 20px;
+  text-align: center;
+}
 </style>
 
 </head>
@@ -118,8 +124,8 @@ li.dropdown {
 </li>
 </ul>
 
-<div style="margin-left:15%;" align-text="center";>
-<h2>Enter your route</h2>
+<div id="header">Enter your route</div>
+
 
 <div id ="map" style="margin-left:15%;margin-right:0;padding:1px 16px;height:400px;width:70%"></div>
 
