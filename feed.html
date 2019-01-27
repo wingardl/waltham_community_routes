@@ -129,14 +129,41 @@ th, td {
   }
 
   .btn {
-    background-color: black;
-    opacity: 0.6;
-    transition: 0.3s;
+    background-color: plum;
+    opacity: 1;
     border: none;
-    color: plum;
-  }
+    color: white;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.3s;
+    cursor: pointer;
+    margin: 5px;
 
-  .btn:hover {opacity: 1}
+  }
+    .btn span {
+        cursor: pointer;
+        display: inline-block;
+        position: relative;
+        transition: 0.3s;
+    }
+
+.button span:after {
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+.button:hover span {
+  padding-right: 25px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
 
   </style>
     <img src="header-01.png" width = "100%" alt="wpy logo" align="middle">
@@ -256,8 +283,8 @@ th, td {
                         <h3 id="timestamp"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a
-                                id="upvotes"></a> </button>
+                        <button class="btn" onClick="onClick()"> <span>Upvotes: <a
+                                id="upvotes"></a> <i class="glyphicon glyphicon-thumbs-up"></i></span></button>
                     </div>
                 </div>
 
@@ -281,7 +308,8 @@ th, td {
                         <h3 id="timestamp2"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick2()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes2"></a>
+                        <button class="btn" onClick="onClick2()"><span> Upvotes: <a id="upvotes2"></a><i class="glyphicon glyphicon-thumbs-up"></i>
+                            </span>
                         </button>
                     </div>
                 </div>
@@ -306,7 +334,8 @@ th, td {
                         <h3 id="timestamp3"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick3()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes3"></a>
+                        <button class="btn" onClick="onClick3()"><span> Upvotes: <a id="upvotes3"></a><i class="glyphicon glyphicon-thumbs-up"></i>
+                            </span>
                         </button>
                     </div>
                 </div>
