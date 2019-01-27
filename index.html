@@ -7,45 +7,77 @@
       margin: 0;
     }
 
-    ul {
+     ul {
       list-style-type: none;
       margin: 0;
       padding: 0;
       width: 25%;
-      background-color: #f1f1f1;
+      background-color: #000;
       position: fixed;
       height: 100%;
       overflow: auto;
     }
 
-    li a {
+li a {
       display: block;
       color: #000;
       padding: 8px 16px;
       text-decoration: none;
     }
+li a, .dropbtn {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
 
-    li a.active {
-      background-color: #4CAF50;
-      color: white;
-    }
+li a:hover, .dropdown:hover .dropbtn {
+  background-color: red;
+}
 
-    li a:hover:not(.active) {
-      background-color: #555;
-      color: white;
-    }
-  </style>
+li.dropdown {
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+</style>
 </head>
 
 <body>
-
-
 
   <ul>
     <li><a href="#home">About</a></li>
     <li><a href="community_routes.html">Community Routes</a></li>
     <li><a href="#contact">Ride Share</a></li>
-    <li><a href="routeupdates.html">Route Updates</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Route Updates</a>
+      <div class="dropdown-content">
+        <a href="map.html">Map</a>
+        <a href="#">Feed</a>
+      </div>
+    </li>
   </ul>
 
   <div style="margin-left:25%;padding:1px 16px;height:1000px;">
