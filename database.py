@@ -1,5 +1,9 @@
 import pymongo
+import datetime
+
+# Constants
 URL = "mongodb+srv://deishacks:louisbrandeis@waltham-tlvvt.gcp.mongodb.net/test?retryWrites=true"
+TIMESTAMP = datetime.datetime.now()
 
 client = pymongo.MongoClient(URL)
 connect = client.test
@@ -13,57 +17,120 @@ ride_col = db["rides"]
 #print(db.command("serverStatus"))
 
 
-class post:
+class Post:
 
     def __init__(self, content, street, city, state, zip, long, lat, main_category, tags,
-        timestamp, upvotes, active_status):
+        timestamp, upvotes, active):
 
-        self.content = content
-        self.street = street
-        self.city = city
-        self.state = state
-        self.zip = zip
-        self.long = long
-        self.lat = lat
-        self.main_category = main_category
-        self.tags = tags
-        self.timestamp = timestamp
-        self.upvotes = upvotes
-        self.active_status = active_status
+        self.dict = {"content": content, "street": street, "city": city,
+            "state": state, "zip": zip, "long": long, "lat": lat,
+            "main_category": main_category, "tags": tags, "timestamp": timestamp,
+            "upvotes": upvotes, "active": active}
 
-class route:
+    def push(self):
+
+        post_id = post_col.insert_one(self.dict)
+
+    def get(self):
+
+        return self.dict
+
+class Route:
 
     def __init__ (self, origin_street, origin_city, origin_state, origin_zip,
         origin_long, origin_lat, dest_street, dest_city, dest_state, dest_zip,
         dest_long, dest_lat, image_URL, comment):
 
-        self.origin_street = origin_street
-        self.origin_city = origin_city
-        self.origin_state = origin_state
-        self.origin_zip = origin_zip
-        self.origin_long = origin_long
-        self.origin_lat = origin_lat
-        self.dest_street = dest_street
-        self.dest_city = dest_city
-        self.dest_state = dest_state
-        self.dest_zip = dest_zip
-        self.dest_long = dest_long
-        self.dest_lat = dest_lat
-        self.image_URL = image_URL
-        self.comment = comment
+        self.dict = {"origin_street": origin_street, "origin_city": origin_city,
+            "origin_state": origin_state, "origin_zip": origin_zip, "origin_long": origin_long,
+            "origin_lat": origin_lat, "dest_street": dest_street, "dest_city": dest_city,
+            "dest_state": dest_state, "dest_zip": dest_zip, "dest_long": dest_long,
+            "dest_lat": dest_lat, "image_URL": image_URL, "comment": comment}
 
-class ride:
+    def push(self):
+
+        route_id = route_col.insert_one(self.dict)
+
+    def get(self):
+        return self.dict
+
+
+class Ride:
 
     def __init__(self, content, street, city, state, zip, long, lat, timestamp,
-        active_status, user_email):
+        active, user_email):
 
-        self.content = content
-        self.user_email = user_email
-        self.street = street
-        self.city = city
-        self.state = state
-        self.zip = zip
-        self.long = long
-        self.lat = lat
-        self.timestamp = timestamp
-        self.active_status = active_status
+        self.dict = {"content": content, "user_email": user_email, "street": street,
+        "city": city, "state": state, "zip": zip, "long": long, "lat": lat,
+        "timestamp": timestamp, "active": active}
+
+    def push(self):
+
+        ride_id = ride_col.insert_one(self.dict)
+
+    def get(self):
+        return self.dict
+
+
+def fetch_posts(query='None'):
+    posts = []
+    if query == 'None':
+        for post in post_col.find():
+                posts.append(post)
+    else:
+        for post in post_col.find(query):
+                posts.append(post)
+    return posts
+
+def fetch_routes(query='None'):
+    routes = []
+    if query == 'None':
+        for route in route_col.find():
+                routes.append(route)
+    else:
+        for route in route_col.find(query):
+                routes.append(route)
+    return routes
+
+def fetch_rides(query='None'):
+    rides = []
+    if query == 'None':
+        for ride in ride_col.find():
+                rides.append(ride)
+    else:
+        for ride in ride_col.find(query):
+                rides.append(ride)
+    return rides
+
+
+if __name__ == "__main__":
+
+    test_post = Post("first post test", "South Street", "Waltham", "MA", "02453",
+        "71.25798773655532", "42.3663164", "Road Blockage", "construction",
+        TIMESTAMP, 0, True)
+
+    test_route = Route("South Street", "Waltham", "MA", "02453", "71.25798773655532",
+        "42.3663164", "Moody Street","Waltham", "MA", "02453", "-71.237476400", "42.367904200",
+        "brandeis.edu", "first route test")
+
+    test_ride = Ride("first ride test", "South Street", "Waltham", "MA", "02453", "71.25798773655532",
+        "42.3663164", TIMESTAMP, True, "user@brandeis.edu")
+
+    #test_post.push()
+    #test_ride.push()
+    #test_route.push()
+
+    #for post in post_col.find():
+    #    print(post)
+
+    #post_col.delete_many({})
+    #route_col.delete_many({})
+    #ride_col.delete_many({})
+
+    #print(fetch_posts())
+    #print(fetch_routes())
+    #print(fetch_rides())
+
+    #print(fetch_posts({"active": True}))
+    #print(fetch_routes())
+    #print(fetch_rides({"active": False}))
