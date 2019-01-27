@@ -74,42 +74,141 @@ li.dropdown {
 
 <body>
 
-  <ul>
-    <img src="wpy-logo-web.jpg" height="50" width = "110%" alt="wpy logo">
-    <li><a href="about.html">About</a></li>
-    <li class="dropdown">
-      <a href="community_routes.html" class="dropbtn">Community Routes</a>
-      <div class="dropdown-content">
-        <a href="submit_route.html">Submit Route</a>
-      </div>
-    </li>
-    
-    <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
-      <div class="dropdown-content">
-        <a href="map.html">Map</a>
-        <a href="feed.html">Feed</a>
-      </div>
-    </li>
-    <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
-      <div class="dropdown-content">
-        <a href="#">Offer A Ride</a>
-        <a href="#">Request A Ride</a>
-      </div>
-    </li>
-    </ul>
+<ul>
+  <img src="wpy-logo-web.jpg" height="50" width="110%" alt="wpy logo">
+  <li><a href="/">Home</a></li>
+  <li><a href="about.html">About</a></li>
+  <li class="dropdown">
+    <a href="community_routes.html" class="dropbtn">Community Routes</a>
+    <div class="dropdown-content">
+      <a href="submit_route.html">Submit Route</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+    <div class="dropdown-content">
+      <a href="map.html">Map</a>
+      <a href="feed.html">Feed</a>
+    </div>
+  </li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
+    <div class="dropdown-content">
+      <a href="#">Offer A Ride</a>
+      <a href="#">Request A Ride</a>
+    </div>
+  </li>
+</ul>
 
   <div style="margin-left:15%;padding:1px 16px;height:1000px;">
-    <h2>THE POSTS WILL GO HERE </h2>
-    <p>Some text..</p>
-    <p>Some tgjhkgkjext..</p>
-    <p>Some text..</p>
-    <p>Some text..</p>
-    <p>Some text..</p>
-    <p>Some text..</p>
-    <p>Some text..</p>
-  </div>
+    <script>
+      var myList =
+       [
 
-</body>
+          {
+            "origin_street": "Moody Street",
+            "origin_city": "Waltham",
+            "origin_state": "MA",
+            "origin_zip": "02453",
+            "origin_long": -71.237470,
+            "origin_lat": 42.367930,
+            "dest_street": "South Street",
+            "dest_city": "Waltham",
+            "dest_state": "MA",
+            "dest_zip": "02453",
+            "dest_long": -71.256680,
+            "dest_lat": 42.365090,
+            "image_URL": "brandeis.edu",
+            "comment": "Cool shortcut to South Street!"
+          },
+
+          {
+            "origin_street": "Fisk Avenue",
+            "origin_city": "Waltham",
+            "origin_state": "MA",
+            "origin_zip": "02453",
+            "origin_long": -71.254810,
+            "origin_lat": 42.372640,
+            "dest_street": "South Street",
+            "dest_city": "Waltham",
+            "dest_state": "MA",
+            "dest_zip": "02453",
+            "dest_long": -71.256680,
+            "dest_lat": 42.365090,
+            "image_URL": "brandeis.edu",
+            "comment": "You can cut through North Quad to get to Walgreens!"
+          },
+
+          {
+            "origin_street": "Main Street",
+            "origin_city": "Waltham",
+            "origin_state": "MA",
+            "origin_zip": "02453",
+            "origin_long": -71.266430,
+            "origin_lat": 42.376680,
+            "dest_street": "Moody Street",
+            "dest_city": "Waltham",
+            "dest_state": "MA",
+            "dest_zip": "02453",
+            "dest_long": -71.237470,
+            "dest_lat": 42.367930,
+            "image_URL": "brandeis.edu",
+            "comment": "Main Street is always really well-lit at night."
+          }
+        ]
+
+        function buildHtmlTable(selector) {
+            var columns = addAllColumnHeaders(myList, selector);
+
+            for (var i = 0; i < myList.length; i++) {
+              var row$ = $('<tr/>');
+              for (var colIndex = 0; colIndex < columns.length; colIndex++) {
+                var cellValue = myList[i][columns[colIndex]];
+
+                if (cellValue == null) cellValue = "";
+                else cellValue += "<p> " + "<p> " + "<p>         " + "<p>   " + "<p>   " + "<p>  " + "<p>  ";
+
+                row$.append($('<td/>').html(cellValue + "<p>"));
+
+
+              }
+              $(selector).append(row$);
+
+            }
+          }
+
+          // Adds a header row to the table and returns the set of columns.
+          // Need to do union of keys from all records as some records may not contain
+          // all records.
+          function addAllColumnHeaders(myList, selector) {
+            var columnSet = [];
+            var headerTr$ = $('<tr/>');
+
+            for (var i = 0; i < myList.length; i++) {
+              var rowHash = myList[i];
+              for (var key in rowHash) {
+
+                if ($.inArray(key, columnSet) == -1) {
+                  if (key == 'origin_street' || key == 'dest_street' || key == 'comment' || key == 'upvotes') {
+                    columnSet.push(key);
+                    headerTr$.append($('<th/>').html(key));
+                  }
+
+                }
+              }
+            }
+            $(selector).append(headerTr$);
+
+            return columnSet;
+          }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        
+        <body onLoad="buildHtmlTable('#excelDataTable')">
+          <table id="excelDataTable" border="1" padding="15px" ;>
+          </table>
+        </body>
+        </div>
+
+  </body>
 </html>
