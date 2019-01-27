@@ -299,7 +299,7 @@
                 </div>
                 <div class="col-75">
                     <div id="destinationField">
-                        <input id="autocomplete2" placeholder="Enter destination addressss" onFocus="geolocate2()" type="text" />
+                        <input id="autocomplete2" placeholder="Enter destination address" onFocus="geolocate2()" type="text" />
                     </div>
                     <table id="address2">
                         <tr>
@@ -374,7 +374,7 @@
                     /** @type {!HTMLInputElement} */(document.getElementById('autocomplete2')),
                     { types: ['geocode'] });
 
-                autocomplete2.addListener('dest_changed', fillInAddress2);
+                autocomplete2.addListener('place_changed', fillInAddress2);
 
 
 
@@ -442,6 +442,7 @@
 
                 function fillInAddress2() {
                     // Get the place details from the autocomplete object.
+                    console.log("hellloooo");
                     var place = autocomplete2.getPlace();
 
                     for (var component in componentForm2) {
