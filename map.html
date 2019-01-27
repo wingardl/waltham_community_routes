@@ -98,9 +98,16 @@
     <li><a href="/">Home</a></li>
     <li><a href="about.html">About</a></li>
     <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+      <a href="community_routes.html" class="dropbtn">Community Routes</a>
       <div class="dropdown-content">
         <a href="submit_route.html">Submit Route</a>
+      </div>
+    </li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+      <div class="dropdown-content">
+        <a href="map.html">Map</a>
+        <a href="feed.html">Feed</a>
       </div>
     </li>
     <li class="dropdown">
@@ -110,15 +117,8 @@
         <a href="#">Request A Ride</a>
       </div>
     </li>
-
-    <li class="dropdown">
-      <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
-      <div class="dropdown-content">
-        <a href="map.html">Map</a>
-        <a href="feed.html">Feed</a>
-      </div>
-    </li>
   </ul>
+  
 
   <div id ="map" style="margin-left:15%;padding:1px 16px;height:1000px;"></div>
   <!-- <div><button id="locations">Visualize Locations</button>
@@ -164,11 +164,10 @@
 </head>
 <body>
 
-<button class='button button1' style = "float:right" id = 'button'>Visulize Locations</button>
+
 
 
     <script>
-      var button = document.getElementById('button');
 
 var map;
   function initMap() {
@@ -415,69 +414,65 @@ var map;
     drawingManager.setMap(map);
 
     //update();
-  }
+  
 
 
 
-  function getJSONMarkers(){
-    const markers = [
-    {"content": "Construction work on Moody Street!",
-    "street": "Moody Street",
-    "city": "Waltham",
-    "state": "MA",
-    "zip": "02453",
-    "long": -71.237470,
-    "lat": 42.367930,
-    "main_category": "repair",
-    "tags": "construction work",
-    "timestamp": "12:00:00",
-    "upvotes": "13",
-    "active": "True"}];
-    return markers;
-  }
-
-  var blackStar = 'https://i.imgur.com/xckV6jl.png';
-
-  var globalMap;
-  function loadBaseMap() {
-    // Initialize Google Maps
-    const mapOptions = {
-      center:new google.maps.LatLng(42.3767, -71.2356),
-      zoom: 11
+    function getJSONMarkers(){
+      const markers = [
+      {"content": "Construction work on Moody Street!",
+      "street": "Moody Street",
+      "city": "Waltham",
+      "state": "MA",
+      "zip": "02453",
+      "long": -71.237470,
+      "lat": 42.367930,
+      "main_category": "repair",
+      "tags": "construction work",
+      "timestamp": "12:00:00",
+      "upvotes": "13",
+      "active": "True"}];
+      return markers;
     }
 
-    const map =  new google.maps.Map(document.getElementById("map"), mapOptions);
-    globalMap = map;
+    var blackStar = 'https://i.imgur.com/xckV6jl.png';
 
+    var globalMap;
+    function loadBaseMap() {
+      // Initialize Google Maps
+      const mapOptions = {
+        center:new google.maps.LatLng(42.3767, -71.2356),
+        zoom: 11
+      }
 
-  }
+      const map =  new google.maps.Map(document.getElementById("map"), mapOptions);
+      globalMap = map;
 
-
-  button.addEventListener('click', () => {
-    const resourceMarkers = getJSONMarkers();
-    // Initialize Google Markers
-    for(resource of resourceMarkers) {
-      // console.log(typer);
-      console.log("hello");
-      let marker = new google.maps.Marker({
-        map: map,
-        position: new google.maps.LatLng(resource.lat, resource.long),
-        title: resource.name,
-        icon: blackStar
-      })
-
-      // marker.setMap(map);
 
     }
 
 
-  });
+    // button.addEventListener('click', () => {
+      const resourceMarkers = getJSONMarkers();
+      // Initialize Google Markers
+      for(resource of resourceMarkers) {
+        // console.log(typer);
+        console.log("hello");
+        let marker = new google.maps.Marker({
+          map: map,
+          position: new google.maps.LatLng(resource.lat, resource.long),
+          title: resource.name,
+          icon: blackStar
+        // })
+        })
+
+        // marker.setMap(map);
+
+      }
+    }
 
 
   // function update(){
-
-
-  //  }
 
 
 

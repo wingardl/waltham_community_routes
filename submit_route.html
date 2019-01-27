@@ -241,7 +241,7 @@
         </li>
 
         <li class="dropdown">
-            <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
+            <a href="community_routes.html" class="dropbtn">Live Updates</a>
             <div class="dropdown-content">
                 <a href="map.html">Map</a>
                 <a href="feed.html">Feed</a>
@@ -374,7 +374,7 @@
                     /** @type {!HTMLInputElement} */(document.getElementById('autocomplete2')),
                     { types: ['geocode'] });
 
-                autocomplete2.addListener('dest_changed', fillInAddress);
+                autocomplete2.addListener('place_changed', fillInAddress2);
 
 
 
@@ -442,6 +442,7 @@
 
                 function fillInAddress2() {
                     // Get the place details from the autocomplete object.
+                    console.log("hellloooo");
                     var place = autocomplete2.getPlace();
 
                     for (var component in componentForm2) {
