@@ -268,7 +268,7 @@ th, td {
                         <h3 id="timestamp2"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes2"></a>
+                        <button class="btn" onClick="onClick2()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes2"></a>
                         </button>
                     </div>
                 </div>
@@ -293,7 +293,7 @@ th, td {
                         <h3 id="timestamp3"></h3>
                     </div>
                     <div class="item5">
-                        <button class="btn" onClick="onClick()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes3"></a>
+                        <button class="btn" onClick="onClick3()"><i class="glyphicon glyphicon-thumbs-up"></i> Upvotes: <a id="upvotes3"></a>
                         </button>
                     </div>
                 </div>
@@ -330,7 +330,7 @@ th, td {
 
             var upvotes2 = myList[1].upvotes;
             document.getElementById("upvotes2").innerHTML = upvotes2;
-            function onClick() {
+            function onClick2() {
                 upvotes2 += 1;
                 document.getElementById("upvotes2").innerHTML = upvotes2;
             };
@@ -351,7 +351,7 @@ th, td {
 
                 var upvotes3 = myList[2].upvotes;
                 document.getElementById("upvotes3").innerHTML = upvotes3;
-                function onClick() {
+                function onClick3() {
                     upvotes3 += 1;
                     document.getElementById("upvotes3").innerHTML = upvotes3;
                 };
