@@ -10,14 +10,22 @@ font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 /* Always set the map height explicitly to define the size of the div
  * element that contains the map. */
 #map {
-  height: 400px;
-  width: 100%;
+  height: 600px;
+  width: 150%;
+  margin-left: 15%;
+  align-self: center;
+
+}
+#header{
+  margin-left: 15%;
+  text-align: center;
 }
 /* Optional: Makes the sample page fill the window. */
 html, body {
   height: 100%;
   width: 100%;
   margin: 0;
+  background-color: #f2f2f2;
 }
 
 
@@ -92,7 +100,7 @@ li.dropdown {
 <li><a href="index.html">Home</a></li>
 <li><a href="about.html">About</a></li>
 <li class="dropdown">
-  <a href="javascript:void(0)" class="dropbtn">Community Routes</a>
+  <a href="community_routes.html" class="dropbtn">Community Routes</a>
   <div class="dropdown-content">
     <a href="submit_route.html">Submit Route via text</a>
     <a href="route_map.html">Submit Route via map</a>
