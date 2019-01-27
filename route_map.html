@@ -18,9 +18,7 @@ font-family:  "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 html, body {
   height: 100%;
   width: 100%;
-  margin: 5px;
   background-color: #f2f2f2;
-  margin-left: 15%;
 }
 
 
@@ -88,8 +86,7 @@ li.dropdown {
 }
 
 #header{
-  margin-left:15%;
-  font-size: 60px;
+  font-size: 40px;
   text-align: center;
 }
 </style>
@@ -113,14 +110,15 @@ li.dropdown {
 <li class="dropdown">
   <a href="javascript:void(0)" class="dropbtn">Ride Share</a>
   <div class="dropdown-content">
-    <a href="#">Offer A Ride</a>
-    <a href="#">Request A Ride</a>
+    <a href="offer_ride.html">Offer A Ride</a>
+    <a href="request_ride.html">Request A Ride</a>
   </div>
 </li>
 
 <li class="dropdown">
   <a href="javascript:void(0)" class="dropbtn">Live Updates</a>
   <div class="dropdown-content">
+    <a href = "submit_concern.html">Submit concern</a>
     <a href="map.html">Map</a>
     <a href="feed.html">Feed</a>
   </div>
@@ -130,9 +128,10 @@ li.dropdown {
 <div id="header">Enter your route</div>
 
 
-<div id ="map" style="margin-left:15%;margin-right:0;padding:1px 16px;height:400px;width:70%"></div>
+<div id ="map" style="margin-left:20%;margin-right:20%;padding:1px 16px;height:400px;width:70%;align-content: center"></div>
 
-<h3><input type="button" value="Click to submit" onclick="submitDrawing()"></h3>
+<h3 style="margin-left:20%;margin-right:20%;padding:1px 16px;align-self: center">
+  <input type="button"  value="Click to submit" onclick="submitDrawing()"></h3>
 </div>
 
 <script>
