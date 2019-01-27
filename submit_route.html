@@ -229,7 +229,9 @@
                     <label for="fname">Origin</label>
                 </div>
                 <div class="col-75">
-                    <input type="text" id="fname" name="firstname" placeholder="Origin">
+                    <div id="locationField">
+                        <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
+                    </div>
                 </div>
             </div>
             <div class="row">
@@ -254,9 +256,7 @@
         </form>
         </div>
 
-        <div id="locationField">
-            <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
-        </div>
+        
         
         <table id="address">
             <tr>
