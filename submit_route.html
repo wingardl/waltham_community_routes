@@ -21,7 +21,13 @@
 </style>
 <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
 <style>
-    #locationField,
+    #originField,
+    #controls {
+        position: relative;
+        width: 480px;
+    }
+
+    #destinationField,
     #controls {
         position: relative;
         width: 480px;
@@ -63,7 +69,12 @@
     .wideField {
         width: 200px;
     }
-    #locationField {
+    #originField {
+        height: 20px;
+        margin-bottom: 2px;
+    }
+
+    #destinationField {
         height: 20px;
         margin-bottom: 2px;
     }
@@ -234,7 +245,7 @@
                     <label for="fname">Origin</label>
                 </div>
                 <div class="col-75">
-                    <div id="locationField">
+                    <div id="originField">
                         <input id="autocomplete" placeholder="Enter your address" onFocus="geolocate()" type="text" />
                     </div>
                     <table id="address">
